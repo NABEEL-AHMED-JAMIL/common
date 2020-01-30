@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Web Scraping Request Schema",
+  "description": "Web Scraping Schema For Validation Request",
+  "type": "object",
+  "additionalProperties": false,
+  "not": {
+    "allOf": [
+      {
+        "required": [ "type", "ftp_credential" ]
+      },
+      {
+        "required": [ "type", "aws_credential" ]
+      }
+    ]
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [ "FTP", "AWS" ]
+    },
+    "ftp_credential": {
+      "type": "object",
+      "required": [ "ip", "username", "password", "port", "folder_path" ],
+      "ip": {
+        "type": "string",
+        "format": "ip-address"
+      },
+      "username": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      },
+      "port": {
+        "type": "integer"
+      },
+      "folder_path": {
+        "type": "string"
+      }
+    },
+    "aws_credential": {
+      "type": "object",
+      "required": [ "access_id", "access_key", "bucket_name", "region", "folder_path" ],
+      "access_id": {
+        "type": "string"
+      },
+      "access_key": {
+        "type": "string"
+      },
+      "bucket_name": {
+        "type": "string"
+      },
+      "region": {
+        "type": "string",
+        "enum": [
+          "us-east-2", "us-east-1", "us-west-1", "us-west-2", "ap-east-1", "ap-south-1",
+          "ap-northeast-3", "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-northeast-1",
+          "ca-central-1", "eu-central-1", "eu-west-1", "eu-west-2", "eu-west-3", "eu-north-1",
+          "me-south-1", "sa-east-1" ]
+      },
+      "folder_path": {
+        "type": "string"
+      }
+    }
+  }
+}

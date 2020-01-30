@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Segment Process Request Schema",
+  "description": "Segment Process For Validation Request",
+  "type": "object",
+  "additionalProperties": false
+}
+
+
