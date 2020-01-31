@@ -18,9 +18,7 @@ public class TemplateFactory {
 
     private Logger logger = LogManager.getLogger(TemplateFactory.class);
 
-    public final String EMAIL_ACCOUNT_CREATED_TEMPLATE_PATH = "templates/email_account_created.vm";
-    public final String FORGET_PASSWORD_TEMPLATE_PATH = "templates/forget_password.vm";
-    public final String USER_REGISTRATIONS_TEMPLATE_PATH = "templates/user_registrations.vm";
+    public final String DAILY_FILE_STATUS_TEMPLATE_PATH = "templates/daily_file_status.vm";
 
     private Template template;
     private VelocityEngine engine;
@@ -33,14 +31,8 @@ public class TemplateFactory {
         this.engine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
         this.engine.init();
         switch (templateType) {
-            case EMAIL_ACCOUNT_CREATED_TEMPLATE:
-                this.template = this.engine.getTemplate(EMAIL_ACCOUNT_CREATED_TEMPLATE_PATH);
-                break;
-            case FORGET_PASSWORD_TEMPLATE:
-                this.template = this.engine.getTemplate(FORGET_PASSWORD_TEMPLATE_PATH);
-                break;
-            case USER_REGISTRATIONS_TEMPLATE:
-                this.template = this.engine.getTemplate(USER_REGISTRATIONS_TEMPLATE_PATH);
+            case DAILY_FILE_STATUS:
+                this.template = this.engine.getTemplate(DAILY_FILE_STATUS_TEMPLATE_PATH);
                 break;
         }
         return this.template;

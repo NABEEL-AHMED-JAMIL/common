@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<body style="background:#ededed;padding:0;margin:20px 0;">
+	<div style="border:1px solid #0056B3;background:#fff;width:650px;margin:0 auto;">
+		<div style="width:100%;overflow:hidden;">
+			<div style="text-align:center;">
+				<h1 style="font-size:18px;font-family:Calibri,sans-serif;font-weight:bold;margin-top:25px;padding:10px;color:#0056B3;">${reportTitle}</h1>
+			</div>
+		</div>
+		<hr style="border: 0;height: 0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
+		<p style="font-size: 15px; font-family: Arial, sans-serif, serif, EmojiFont;font-weight:bold;padding:0 15px;margin:0;">Dear, ${super_admin}</p>
+		<p style="font-size: 14px; font-family: Arial, sans-serif, serif, EmojiFont;font-weight:normal;padding:10px 15px;margin:0;">${message}.</p>
+		<div style="width:100%;overflow:hidden;margin-bottom:20px;margin-top:25px;">
+		<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" style="width:100%;border:1pt solid #F1F1F1;margin-top:6px;">
+			<tbody>
+				<tr>
+					<td height="100" align="center" valign="middle" style="padding:3.75pt;border-style:none none solid solid;border-bottom-width:1pt;border-left-width:1pt;border-bottom-color:#F1F1F1;border-left-color:#F1F1F1;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:16px;font-weight:bold;"><img style="margin-bottom:6px;" src="https://quorum.works/assets/img/file.png" alt="" align="absmiddle" /> <p style="margin:0;padding:0;">Total Files: <span style="color:#0056B3;font-size:18px;">${fileRecieved}</span></p></td>
+					<td height="100" align="center" valign="middle" style="padding:3.75pt;border-style:none none solid solid;border-bottom-width:1pt;border-left-width:1pt;border-bottom-color:#F1F1F1;border-left-color:#F1F1F1;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:16px;font-weight:bold;"><img style="margin-bottom:6px;" src="https://quorum.works/assets/img/file.png" alt="" align="absmiddle" /> <p style="margin:0;padding:0;">AWS Files: <span style="color:#0056B3;font-size:18px;">${fileRecieved}</span></p></td>
+					<td height="100" align="center" valign="middle" style="padding:3.75pt;border-style:none none solid solid;border-bottom-width:1pt;border-left-width:1pt;border-bottom-color:#F1F1F1;border-left-color:#F1F1F1;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:16px;font-weight:bold;"><img style="margin-bottom:6px;" src="https://quorum.works/assets/img/file.png" alt="" align="absmiddle" /> <p style="margin:0;padding:0;">FTP Files: <span style="color:#0056B3;font-size:18px;">${fileRecieved}</span></p></td>
+				</tr>
+			</tbody>
+		</table>
+    </div>
+
+    <div style="width:100%;overflow:hidden;margin-bottom:20px;margin-top:20px;">
+        <h1 style="color:#0056B3;font-size:15px;font-family: Arial, sans-serif, serif, EmojiFont;font-weight:bold;margin:10px 15px;"><span style="color:#0056B3;font-size:15px;font-family: Arial, sans-serif, serif, EmojiFont;font-weight:bold;margin-top:0px;">AWS Hourly File Status</span></h1>
+        <hr style="border: 0;height: 0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);margin:0 15px;" />
+        <div style="-webkit-box-shadow: 0 10px 6px -6px #d5d5d5;-moz-box-shadow: 0 10px 6px -6px #d5d5d5;box-shadow: 0 10px 6px -6px #d5d5d5;border:1px solid #e2e2e2;padding:10px;overflow:hidden;margin-bottom:10px;margin:15px;">
+        	<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" style="width:100%;border:1pt solid #F1F1F1;">
+            <tbody>
+			<tr style="height:18.75pt;">
+				<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (0 - 5)</td>
+				<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (6 - 11)</td>
+				<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (12 - 17)</td>
+				<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (18 - 23)</td>
+			</tr>
+			<tr style="height:18.75pt;">
+                <td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">5</td>
+                <td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">11</td>
+                <td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">1217</td>
+                <td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">1823</td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+	    <div style="width:100%;overflow:hidden;margin-bottom:20px;margin-top:20px;">
+        <h1 style="color:#0056B3;font-size:15px;font-family: Arial, sans-serif, serif, EmojiFont;font-weight:bold;margin:10px 15px;"><span style="color:#0056B3;font-size:15px;font-family: Arial, sans-serif, serif, EmojiFont;font-weight:bold;margin-top:0px;">FTP Hourly File Status</span></h1>
+        <hr style="border: 0;height: 0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);margin:0 15px;" />
+        <div style="-webkit-box-shadow: 0 10px 6px -6px #d5d5d5;-moz-box-shadow: 0 10px 6px -6px #d5d5d5;box-shadow: 0 10px 6px -6px #d5d5d5;border:1px solid #e2e2e2;padding:10px;overflow:hidden;margin-bottom:10px;margin:15px;">
+        	<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" style="width:100%;border:1pt solid #F1F1F1;">
+            <tbody>
+				<tr style="height:18.75pt;">
+					<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (0 - 5)</td>
+					<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (6 - 11)</td>
+					<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (12 - 17)</td>
+					<td width="25%" style="background-color:whitesmoke;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">Hour (18 - 23)</td>
+				</tr>
+				<tr style="height:18.75pt;">
+					<td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">0</td>
+					<td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">11</td>
+					<td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">17</td>
+					<td width="25%" style="background-color:white;height:18.75pt;padding:3.75pt;border-style:none none none solid;border-left-width:1pt;border-left-color:#DEDEDE;font-family: Calibri, sans-serif, serif, EmojiFont; margin: 0px;font-size:14px;font-weight:bold;">23</td>
+				</tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+  <div style="background:#0056B3;padding:6px;color:#fff;"><p style="text-align:center;font-size: 14px; font-family: Arial, sans-serif, serif, EmojiFont;">The Barco Support Team.</p></div>
+    
+</div>
+
+</body>
+</html>

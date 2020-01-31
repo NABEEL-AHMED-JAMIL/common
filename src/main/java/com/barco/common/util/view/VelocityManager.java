@@ -37,13 +37,7 @@ public class VelocityManager {
         String responseMessage = null;
         this.setWriter(new StringWriter());
         this.setContext(new VelocityContext());
-        if(templateType.equals(EMAIL_ACCOUNT_CREATED_TEMPLATE)) {
-            this.context.put(REQUEST, metadata);
-            responseMessage = this.getWriterResponse(templateType).toString();
-        } else if(templateType.equals(FORGET_PASSWORD_TEMPLATE)) {
-            this.context.put(REQUEST, metadata);
-            responseMessage = this.getWriterResponse(templateType).toString();
-        } else if(templateType.equals(USER_REGISTRATIONS_TEMPLATE)) {
+        if(templateType.equals(DAILY_FILE_STATUS)) {
             this.context.put(REQUEST, metadata);
             responseMessage = this.getWriterResponse(templateType).toString();
         }
