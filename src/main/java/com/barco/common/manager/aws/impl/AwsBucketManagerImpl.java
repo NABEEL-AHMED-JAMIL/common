@@ -1,6 +1,5 @@
 package com.barco.common.manager.aws.impl;
 
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -21,29 +20,29 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-/**
- * @author Nabeel.amd
- */
+
 @Component
 @Scope("prototype")
 public class AwsBucketManagerImpl implements IAwsBucketManager {
 
-    public final Logger logger = LogManager.getLogger(AwsBucketManagerImpl.class);
+    public Logger logger = LogManager.getLogger(AwsBucketManagerImpl.class);
 
     @Autowired
     private AwsProperties awsProperties;
+
     private AmazonS3 amazonS3;
     private AWSCredentials credentials;
 
     public AwsBucketManagerImpl() { }
 
-    @PostConstruct
     @Override
+    @PostConstruct
     public void initializeAmazonS3Client() throws AmazonClientException {
         this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
         logger.info("+================AWS-S3-START====================+");

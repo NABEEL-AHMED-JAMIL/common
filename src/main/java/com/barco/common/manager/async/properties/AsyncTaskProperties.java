@@ -1,22 +1,24 @@
 package com.barco.common.manager.async.properties;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Nabeel.amd
- */
+
 @Component
 @Scope("prototype")
+@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AsyncTaskProperties {
 
-    @Value("${asynce.task.executor.minThreads}")
+    @Value("${asyncetaskexecutor.minThreads}")
     private Integer minThreads;
-    @Value("${asynce.task.executor.maxThreads}")
+    @Value("${asyncetaskexecutor.maxThreads}")
     private Integer maxThreads;
-    @Value("${asynce.task.executor.idleThreadLife}")
+    @Value("${asyncetaskexecutor.idleThreadLife}")
     private Integer idleThreadLife;
 
     public AsyncTaskProperties() { }

@@ -1,18 +1,17 @@
 package com.barco.common.manager.async.executor;
 
-import com.barco.common.util.ExceptionUtil;
+import com.barco.common.utility.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.*;
 
-/**
- * @author Nabeel.amd
- */
+
 public class AsyncDALTaskExecutor {
 
-    public static final Logger logger = LogManager.getLogger(AsyncDALTaskExecutor.class);
+    public static Logger logger = LogManager.getLogger(AsyncDALTaskExecutor.class);
 
     private static LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
     private static ThreadPoolExecutor threadPool;
@@ -54,4 +53,5 @@ public class AsyncDALTaskExecutor {
             }, 5 * 60 * 1000, 60000);
         logger.info(">============AsyncDALTaskExecutor End Successful============<");
     }
+
 }

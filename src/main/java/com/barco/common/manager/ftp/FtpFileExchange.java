@@ -1,17 +1,19 @@
 package com.barco.common.manager.ftp;
 
-//import org.apache.commons.net.PrintCommandListener;
 import com.google.gson.Gson;
+import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.ftp.FTPSClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import javax.net.ssl.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.Socket;
@@ -22,26 +24,19 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Locale;
 
-/**
- * @author Nabeel.amd
- */
+
 @Component
 @Scope("prototype")
 public class FtpFileExchange {
 
-    private static final Logger logger = LogManager.getLogger(FtpFileExchange.class);
+    private static Logger logger = LogManager.getLogger(FtpFileExchange.class);
 
     private final Integer TENSECONDS  = 10*1000; // 10 second
     // mean directory path for default server
-    @Value("${ftp.directory.path}")
     private String directoryPath;
-    @Value("${ftp.host}")
     private String host;
-    @Value("${ftp.port}")
     private Integer port;
-    @Value("${ftp.user}")
     private String user;
-    @Value("${ftp.password}")
     private String password;
     private ModifiedFTPSClient ftpsClient;
 
@@ -102,7 +97,7 @@ public class FtpFileExchange {
         logger.info("FTP :- Connection try :- IP :- (" + this.host + ") , Port :- " + this.port + " Start");
         this.ftpsClient.connect(this.host, this.port);
         // show the real ftp logs
-        //this.ftpsClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+        this.ftpsClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
         logger.info("FTP :- Connection try :- IP :- (" + this.host + ") , Port :- " + this.port + " Done");
         int reply = this.ftpsClient.getReplyCode();
         logger.info("FTP :- Connection Code :- " + reply);
@@ -168,7 +163,7 @@ public class FtpFileExchange {
         String[] replies = ftpsClient.getReplyStrings();
         if (replies != null && replies.length > 0) {
             for (String aReply : replies) {
-                System.out.println("SERVER: " + aReply);
+                logger.info("SERVER: " + aReply);
             }
         }
     }
@@ -189,7 +184,9 @@ public class FtpFileExchange {
         public ModifiedFTPSClient(boolean isImplicit) { super("TLS", isImplicit); }
 
         // TLS will be default there in ftps-client
-        public ModifiedFTPSClient(boolean isImplicit, SSLContext sc) { super(isImplicit, sc); }
+        public ModifiedFTPSClient(boolean isImplicit, SSLContext sc) {
+            super(isImplicit, sc);
+        }
 
         @Override
         protected void _prepareDataSocket_(final Socket socket) throws IOException {
@@ -221,4 +218,5 @@ public class FtpFileExchange {
 
     @Override
     public String toString() { return new Gson().toJson(this); }
+
 }

@@ -1,14 +1,13 @@
-package com.barco.common.util;
+package com.barco.common.utility;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Nabeel.amd
- */
+
 public class ExceptionUtil {
 
     public Logger logger = LogManager.getLogger(ExceptionUtil.class);

@@ -16,26 +16,26 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 
-/**
- * @author Nabeel.amd
- */
+
 @Component
 @Scope("prototype")
 public class AwsSESManagerImpl implements IAwsSESManager {
 
-    public static final Logger logger = LogManager.getLogger(AwsSESManagerImpl.class);
+    public static Logger logger = LogManager.getLogger(AwsSESManagerImpl.class);
 
     @Autowired
     private AwsProperties awsProperties;
+
     private AWSCredentials credentials;
     private AmazonSimpleEmailService amazonSES;
 
     public AwsSESManagerImpl() { }
 
-    @PostConstruct
     @Override
+    @PostConstruct
     public void initializeAmazonS3Client() throws AmazonClientException {
         this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
         logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-START====================+");
