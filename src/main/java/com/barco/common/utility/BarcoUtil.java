@@ -1,5 +1,7 @@
 package com.barco.common.utility;
 
+import com.google.gson.JsonObject;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
@@ -25,6 +27,13 @@ public class BarcoUtil {
         } else {
             return false;
         }
+    }
+
+    public static Boolean hasKeyValue(JsonObject jsonObj, String key) {
+        return ((jsonObj.has(key) && jsonObj.get(key) != null && !jsonObj.get(key).isJsonNull()) &&
+            ((jsonObj.get(key).isJsonObject() && !jsonObj.getAsJsonObject(key).entrySet().isEmpty()) ||
+            (jsonObj.get(key).isJsonArray() && 0 < jsonObj.getAsJsonArray(key).size()) ||
+            (jsonObj.get(key).isJsonPrimitive() && StringUtils.isNotBlank(jsonObj.get(key).getAsString()))));
     }
 
 }

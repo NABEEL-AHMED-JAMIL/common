@@ -47,35 +47,20 @@ public class TokenHelper {
     public void setAUTH_HEADER(String AUTH_HEADER) { this.AUTH_HEADER = AUTH_HEADER; }
 
     // will return the name of the user like email or username
-    public String getUsernameFromToken(String token) {
-        String username;
-        try {
-            username = this.getClaimsFromToken(token).getSubject();
-        } catch (Exception ex) {
-            username = null;
-        }
-        return username;
+    public String getUsernameFromToken(String token) throws Exception {
+        return this.getClaimsFromToken(token).getSubject();
     }
 
     public String generateToken(String username) {
-        return Jwts.builder().setIssuer(this.APP_NAME)
-            .setSubject(username).setIssuedAt(generateCurrentDate())
-            .setExpiration(generateExpirationDate())
-            .signWith(this.SIGNATURE_ALGORITHM, this.SECRET).compact();
+        return Jwts.builder().setIssuer(this.APP_NAME).setSubject(username).setIssuedAt(generateCurrentDate())
+            .setExpiration(generateExpirationDate()).signWith(this.SIGNATURE_ALGORITHM, this.SECRET).compact();
     }
 
-    private Claims getClaimsFromToken(String token) {
-        Claims claims;
-        try {
-            claims = Jwts.parser().setSigningKey(this.SECRET)
-                .parseClaimsJws(token).getBody();
-        } catch (Exception ex) {
-            claims = null;
-        }
-        return claims;
+    private Claims getClaimsFromToken(String token) throws Exception {
+        return Jwts.parser().setSigningKey(this.SECRET).parseClaimsJws(token).getBody();
     }
 
-    public String getToken( HttpServletRequest request ) {
+    public String getToken(HttpServletRequest request) {
         String authHeader = request.getHeader(this.AUTH_HEADER);
         if (authHeader != null && authHeader.startsWith(this.Bearer)) {
             return authHeader.substring(7);

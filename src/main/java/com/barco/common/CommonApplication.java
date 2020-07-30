@@ -1,7 +1,9 @@
 package com.barco.common;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -19,6 +21,12 @@ public class CommonApplication {
 	@PostConstruct
 	public void started() {
 		TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
+	}
+
+	@Bean
+	public CommandLineRunner commandLineRunner() {
+		return (args) -> {
+		};
 	}
 
 }
