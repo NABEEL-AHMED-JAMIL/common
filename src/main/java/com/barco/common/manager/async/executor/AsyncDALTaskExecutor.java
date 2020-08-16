@@ -4,8 +4,8 @@ import com.barco.common.utility.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Timer;
-import java.util.TimerTask;
+//import java.util.Timer;
+//import java.util.TimerTask;
 import java.util.concurrent.*;
 
 
@@ -41,16 +41,16 @@ public class AsyncDALTaskExecutor {
             }
         });
         // scheduler use to check how man thread are active and other pool size detail
-        (new Timer())
-            .schedule(new TimerTask() {
-                @Override public void run() {
-                logger.info("AsyncDAL Active No Threads: " + threadPool.getActiveCount() +
-                    " Core no of Threads: " + threadPool.getCorePoolSize() +
-                    " Current no of threads: " + threadPool.getPoolSize() +
-                    " current Queue Size: " + queue.size() +
-                    " Max allowed Threads: "+threadPool.getMaximumPoolSize());
-                }
-            }, 5 * 60 * 1000, 60000);
+//        (new Timer())
+//            .schedule(new TimerTask() {
+//                @Override public void run() {
+//                logger.info("AsyncDAL Active No Threads: " + threadPool.getActiveCount() +
+//                    " Core no of Threads: " + threadPool.getCorePoolSize() +
+//                    " Current no of threads: " + threadPool.getPoolSize() +
+//                    " current Queue Size: " + queue.size() +
+//                    " Max allowed Threads: "+threadPool.getMaximumPoolSize());
+//                }
+//            }, 5 * 60 * 1000, 60000);
         logger.info(">============AsyncDALTaskExecutor End Successful============<");
     }
 
