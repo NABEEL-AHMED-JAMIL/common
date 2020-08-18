@@ -36,9 +36,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         FilterChain filterChain) throws ServletException, IOException {
         String authToken = this.tokenHelper.getToken(httpServletRequest);
         if (authToken != null) {
-            String requestJson = null;
             try {
-                requestJson = this.tokenHelper.getUsernameFromToken(authToken);
+                String requestJson = this.tokenHelper.getUsernameFromToken(authToken);
                 if (requestJson != null) {
                     logger.debug("Verify AppUser Detail With Token.");
                     JsonParser parser = new JsonParser();
