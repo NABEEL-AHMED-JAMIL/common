@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+
 @Component
 @Scope("prototype")
 public class TemplateFactory {

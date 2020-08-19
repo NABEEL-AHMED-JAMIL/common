@@ -19,11 +19,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
-/**
- * @author Nabeel.amd
- */
+
 @Configuration
+@EnableWebSocket
 public class CommonConfig {
 
     public final Logger logger = LogManager.getLogger(CommonConfig.class);
