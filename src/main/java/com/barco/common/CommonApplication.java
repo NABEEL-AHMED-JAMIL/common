@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Bean;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
-/**
- * @author Nabeel.amd
- */
+
 @SpringBootApplication
 public class CommonApplication {
 

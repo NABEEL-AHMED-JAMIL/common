@@ -4,16 +4,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.*;
 
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebsocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
+public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 
-    public final Logger logger = LogManager.getLogger(WebsocketConfiguration.class);
+    public final Logger logger = LogManager.getLogger(WebSocketBrokerConfig.class);
 
     public String WS_ENDPOINT_PREFIX = "/app";
     public String WS_TOPIC_DESTINATION_PREFIX = "/topic";
@@ -29,7 +27,8 @@ public class WebsocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint(SAMPLE_ENDPOINT_MESSAGE_MAPPING).setAllowedOrigins("*").withSockJS();
-        registry.addEndpoint(SAMPLE_ENDPOINT_WITHOUT_RESPONSE_MESSAGE_MAPPING).setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint(SAMPLE_ENDPOINT_MESSAGE_MAPPING).withSockJS();
+        registry.addEndpoint(SAMPLE_ENDPOINT_WITHOUT_RESPONSE_MESSAGE_MAPPING).withSockJS();
     }
+
 }
