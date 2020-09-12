@@ -24,7 +24,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 @Configuration
 public class CommonConfig {
 
-    public final Logger logger = LogManager.getLogger(CommonConfig.class);
+    public Logger logger = LogManager.getLogger(CommonConfig.class);
 
     @Autowired
     public AsyncTaskProperties asyncTaskProperties;

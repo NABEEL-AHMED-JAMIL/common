@@ -33,5 +33,6 @@ public class ApplicationConstants {
     public static final String TOPIC_ID_EXIST = "Topic id already exist";
     public static final String CLIENT_PATH_EXIST = "ClientPath already exist";
     public static final String EMAIL_ALREADY_EXIST = "Email already exist";
+    public static final String ADMIN_USER_DETAIL_MISSING = "Admin user detail missing";
 
 }

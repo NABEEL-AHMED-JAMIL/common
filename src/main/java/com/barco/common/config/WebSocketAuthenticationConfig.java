@@ -24,7 +24,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Order(Ordered.HIGHEST_PRECEDENCE + 99)
 public class WebSocketAuthenticationConfig implements WebSocketMessageBrokerConfigurer {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketAuthenticationConfig.class);
+    private Logger logger = LoggerFactory.getLogger(WebSocketAuthenticationConfig.class);
 
     private String USERNAME = "username";
     private String PASSWORD = "password";
@@ -41,7 +41,8 @@ public class WebSocketAuthenticationConfig implements WebSocketMessageBrokerConf
                 if (StompCommand.CONNECT.equals(accessor.getCommand())) {
                     final String username = accessor.getFirstNativeHeader(USERNAME);
                     final String password = accessor.getFirstNativeHeader(PASSWORD);
-                    final UsernamePasswordAuthenticationToken user = webSocketAuthenticatorService.getAuthenticatedOrFail(username, password);
+                    final UsernamePasswordAuthenticationToken user = webSocketAuthenticatorService
+                            .getAuthenticatedOrFail(username, password);
                     accessor.setUser(user);
                 }
                 return message;

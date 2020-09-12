@@ -2,6 +2,7 @@ package com.barco.common.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -11,12 +12,13 @@ import java.util.Collections;
 
 
 @Component
+@Scope("prototype")
 public class WebSocketAuthenticatorService {
 
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketAuthenticatorService.class);
+    private Logger logger = LoggerFactory.getLogger(WebSocketAuthenticatorService.class);
 
-    public UsernamePasswordAuthenticationToken getAuthenticatedOrFail(final String  username, final String password) throws AuthenticationException {
-
+    public UsernamePasswordAuthenticationToken getAuthenticatedOrFail(final String  username,
+        final String password) throws AuthenticationException {
         if(username == null || username.trim().isEmpty()) {
             throw new AuthenticationCredentialsNotFoundException("Username was null or empty.");
         }
@@ -24,6 +26,7 @@ public class WebSocketAuthenticatorService {
             throw new AuthenticationCredentialsNotFoundException("Password was null or empty.");
         }
         // null credentials, we do not pass the password along, MUST provide at least one role
-        return new UsernamePasswordAuthenticationToken(username, null, Collections.singleton((GrantedAuthority) () -> "USER"));
+        return new UsernamePasswordAuthenticationToken(username, null,
+                Collections.singleton((GrantedAuthority) () -> "USER"));
     }
 }

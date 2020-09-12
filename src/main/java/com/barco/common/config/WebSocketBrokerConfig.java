@@ -11,7 +11,7 @@ import org.springframework.web.socket.config.annotation.*;
 @EnableWebSocketMessageBroker
 public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 
-    public final Logger logger = LogManager.getLogger(WebSocketBrokerConfig.class);
+    public Logger logger = LogManager.getLogger(WebSocketBrokerConfig.class);
 
     public String WS_ENDPOINT_PREFIX = "/app";
     public String WS_TOPIC_DESTINATION_PREFIX = "/topic";

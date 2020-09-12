@@ -21,7 +21,6 @@ public class TemplateFactory {
     public final String EMAIL_ACCOUNT_CREATED_TEMPLATE_PATH = "templates/email_account_created.vm";
     public final String FORGOT_PASSWORD_TEMPLATE_PATH = "templates/forget_password.vm";
 
-
     private Template template;
     private VelocityEngine engine;
 
