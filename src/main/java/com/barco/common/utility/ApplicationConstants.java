@@ -34,5 +34,9 @@ public class ApplicationConstants {
     public static final String CLIENT_PATH_EXIST = "ClientPath already exist";
     public static final String EMAIL_ALREADY_EXIST = "Email already exist";
     public static final String ADMIN_USER_DETAIL_MISSING = "Admin user detail missing";
+    public static final String CLASS_NAME_MISSING = "Service class name missing";
+    public static final String TASK_JSON_MISSING = "Task Json not be null";
+    public static final String TASK_NAME_MISSING = "Task name not be null";
+    public static final String TASK_ALREADY_EXIST = "Task name already exist";
 
 }

@@ -46,7 +46,7 @@ public class AsyncDALTaskExecutor {
                 logger.info("AsyncDAL Active No Threads: " + threadPool.getActiveCount() +
                     " Core no of Threads: " + threadPool.getCorePoolSize() +
                     " Current no of threads: " + threadPool.getPoolSize() +
-                    " current Queue Size: " + queue.size() +
+                    " Current Queue Size: " + queue.size() +
                     " Max allowed Threads: "+threadPool.getMaximumPoolSize());
                 }
             }, 5 * 60 * 1000, 60000);
