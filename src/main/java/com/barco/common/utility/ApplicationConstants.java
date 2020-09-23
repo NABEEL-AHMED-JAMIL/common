@@ -4,8 +4,8 @@ public class ApplicationConstants {
 
     public static String SERVICE_PROVIDER_NAME = "Barco";
     public static final String INVALID_AUTH = "Auth-User-Detail Invalid";
-    public static final String INTERNAL_ERROR_MSG = "Sorry, couldn't proceed due to some internal error. ";
-    public static final String UNEXPECTED_ERROR = "Unexpected error occur, please contact to you service provider. ";
+    public static final String INTERNAL_ERROR_MSG = "Sorry, couldn't proceed due to some internal error.";
+    public static final String UNEXPECTED_ERROR = "Unexpected error occur, please contact to you service provider.";
     public static String HTTP_404_MSG = "Data not found!.";
     public static String HTTP_BAD_REQUEST = "Sending Request Not Valid";
     public static String SUCCESS_MSG = "Request has been proceed successfully.";
@@ -35,8 +35,11 @@ public class ApplicationConstants {
     public static final String EMAIL_ALREADY_EXIST = "Email already exist";
     public static final String ADMIN_USER_DETAIL_MISSING = "Admin user detail missing";
     public static final String CLASS_NAME_MISSING = "Service class name missing";
+    public static final String STORAGE_KEY_TYPE_MISSING = "Storage key type not be null";
     public static final String TASK_JSON_MISSING = "Task Json not be null";
+    public static final String STORAGE_KEY_JSON_MISSING = "Storage Key Json not be null";
     public static final String TASK_NAME_MISSING = "Task name not be null";
+    public static final String STORAGE_KEY_NAME_MISSING = "Storage key not be null";
     public static final String TASK_ALREADY_EXIST = "Task name already exist";
-
+    public static final String STORAGE_KEY_ALREADY_EXIST = "Storage key name already exist";
 }

@@ -29,7 +29,7 @@ import java.util.Locale;
 @Scope("prototype")
 public class FtpFileExchange {
 
-    private static Logger logger = LogManager.getLogger(FtpFileExchange.class);
+    private Logger logger = LogManager.getLogger(FtpFileExchange.class);
 
     private final Integer TENSECONDS  = 10*1000; // 10 second
     // mean directory path for default server
