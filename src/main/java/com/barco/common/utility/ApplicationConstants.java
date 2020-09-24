@@ -28,6 +28,9 @@ public class ApplicationConstants {
     public static final String ACCOUNT_SUCCESSFULLY_ACTIVATED = "Congratulation, Your account has been activated!";
 
     public static final String AUTHORITY_ALREADY_EXIST = "Authority already exist";
+    public static final String JOB_NAME_ALREADY_EXIST = "Job name already exist";
+    public static final String JOB_EXECUTION_TYPE = "Job execution type not be null its should bye auto|manual";
+    public static final String TASK_FOR_JOB_MISSING = "Task for job missing";
     public static final String FIRST_NAME_AND_LAST_NAME_REQUIRED = "First name and Last name required";
     public static final String INVALID_ROLE = "Invalid role for user";
     public static final String TOPIC_ID_EXIST = "Topic id already exist";
@@ -40,6 +43,10 @@ public class ApplicationConstants {
     public static final String STORAGE_KEY_JSON_MISSING = "Storage Key Json not be null";
     public static final String TASK_NAME_MISSING = "Task name not be null";
     public static final String STORAGE_KEY_NAME_MISSING = "Storage key not be null";
+    public static final String JOB_NAME_MISSING = "Job name not be null";
     public static final String TASK_ALREADY_EXIST = "Task name already exist";
+    public static final String STORAGE_KEY_NOT_FOUND = "Stroage not found with id";
+    public static final String JOB_NOT_FOUND = "Job not found with id";
+    public static final String TASK_NOT_FOUND = "Task not found with id";
     public static final String STORAGE_KEY_ALREADY_EXIST = "Storage key name already exist";
 }
