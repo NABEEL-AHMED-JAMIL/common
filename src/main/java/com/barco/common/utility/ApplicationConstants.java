@@ -52,4 +52,7 @@ public class ApplicationConstants {
     public static final String JOB_NOT_FOUND = "Job not found with id";
     public static final String TASK_NOT_FOUND = "Task not found with id";
     public static final String STORAGE_KEY_ALREADY_EXIST = "Storage key name already exist";
+    public static final String JOB_NOT_ELIGIBLE = "Source is not elligible to add in queue";
+
+
 }
