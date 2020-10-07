@@ -11,7 +11,7 @@ public class ApplicationConstants {
     public static String HTTP_BAD_REQUEST = "Sending Request Not Valid";
     public static String SUCCESS_MSG = "Request has been proceed successfully.";
     public static String STORAGE_ATTACHE_WITH_TASK = "Storage attache with task";
-    public static String Task_ATTACHE_WITH_TASK = "Task attache with task";
+    public static String Task_ATTACHE_WITH_JOB = "Task attache with jon";
     public static final String BARCO_STRING = "scheduler-";
     public static final String INVALID_REQUEST = "Invalid Request";
     public static final String PASSWORD_SHOULD_NOT_BE_EMPTY = "Password should not empty";
