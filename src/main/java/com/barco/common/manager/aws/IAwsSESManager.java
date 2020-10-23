@@ -14,6 +14,4 @@ public interface IAwsSESManager extends IAws {
 
     void amazonSES(AwsProperties awsProperties) throws AmazonClientException;
 
-    void updateAmazonSES(AwsProperties awsProperties);
-
 }

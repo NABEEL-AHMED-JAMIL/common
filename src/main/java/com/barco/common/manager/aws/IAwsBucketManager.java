@@ -30,6 +30,4 @@ public interface IAwsBucketManager extends IAws {
 
     void amazonS3(AwsProperties awsProperties) throws AmazonClientException;
 
-    void updateAmazonBucket(AwsProperties awsProperties);
-
 }

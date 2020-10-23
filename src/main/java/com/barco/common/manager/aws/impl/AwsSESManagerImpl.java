@@ -77,9 +77,4 @@ public class AwsSESManagerImpl implements IAwsSESManager {
         logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-END====================+");
     }
 
-    @Override
-    public void updateAmazonSES(AwsProperties awsProperties) {
-        this.amazonSES(awsProperties);
-    }
-
 }

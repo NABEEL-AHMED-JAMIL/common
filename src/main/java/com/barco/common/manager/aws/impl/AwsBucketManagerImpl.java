@@ -139,11 +139,6 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     }
 
     @Override
-    public void updateAmazonBucket(AwsProperties awsProperties) {
-        this.amazonS3(awsProperties);
-    }
-
-    @Override
     public String toString() { return new Gson().toJson(this); }
 
 }
