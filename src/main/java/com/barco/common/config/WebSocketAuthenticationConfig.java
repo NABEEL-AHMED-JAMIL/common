@@ -26,8 +26,8 @@ public class WebSocketAuthenticationConfig implements WebSocketMessageBrokerConf
 
     private Logger logger = LoggerFactory.getLogger(WebSocketAuthenticationConfig.class);
 
-    private String USERNAME = "username";
-    private String PASSWORD = "password";
+    private String USERNAME = "barco";
+    private String PASSWORD = "ballistic";
 
     @Autowired
     private WebSocketAuthenticatorService webSocketAuthenticatorService;
@@ -41,8 +41,7 @@ public class WebSocketAuthenticationConfig implements WebSocketMessageBrokerConf
                 if (StompCommand.CONNECT.equals(accessor.getCommand())) {
                     final String username = accessor.getFirstNativeHeader(USERNAME);
                     final String password = accessor.getFirstNativeHeader(PASSWORD);
-                    final UsernamePasswordAuthenticationToken user = webSocketAuthenticatorService
-                            .getAuthenticatedOrFail(username, password);
+                    final UsernamePasswordAuthenticationToken user = webSocketAuthenticatorService.getAuthenticatedOrFail(username, password);
                     accessor.setUser(user);
                 }
                 return message;
