@@ -53,6 +53,10 @@ public class ApplicationConstants {
     public static final String TASK_NOT_FOUND = "Task not found with id";
     public static final String STORAGE_KEY_ALREADY_EXIST = "Storage key name already exist";
     public static final String JOB_NOT_ELIGIBLE = "Source is not elligible to add in queue";
+    public static final String AWS_BUCKET_NOT_EXIST = "Bucket not exist %s ";
+    public static final String AWS_DETAIL_MISSING = "Aws detail missing";
+    public static final String FTP_DETAIL_MISSING = "Aws detail missing";
+    public static final String FTP_NOT_CONNECT = "Ftp connection fail";
 
 
 }
