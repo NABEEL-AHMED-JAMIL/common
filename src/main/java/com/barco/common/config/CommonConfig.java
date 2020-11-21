@@ -20,7 +20,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @Configuration
 public class CommonConfig {
 

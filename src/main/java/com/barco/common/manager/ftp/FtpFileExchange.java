@@ -24,7 +24,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Locale;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @Component
 @Scope("prototype")
 public class FtpFileExchange {

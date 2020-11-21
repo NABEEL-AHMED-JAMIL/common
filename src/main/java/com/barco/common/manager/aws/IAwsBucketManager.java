@@ -9,7 +9,9 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 public interface IAwsBucketManager extends IAws {
 
     String createBucket(final String bucketName) throws AmazonServiceException;

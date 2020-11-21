@@ -10,12 +10,14 @@ import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import java.io.*;
 
+/**
+ * @author Nabeel Ahmed
+ */
 @Component
 @Scope("prototype")
 public class EfsFileExchange {
 
     private Logger logger = LogManager.getLogger(EfsFileExchange.class);
-
 
     @Value("${storage.efsFileDire}")
     private String basePathTempDire;

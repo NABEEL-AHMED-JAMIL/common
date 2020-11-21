@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @Component
 @Scope("prototype")
 public class TokenHelper {

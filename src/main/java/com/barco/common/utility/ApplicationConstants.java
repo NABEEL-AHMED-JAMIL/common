@@ -1,5 +1,8 @@
 package com.barco.common.utility;
 
+/**
+ * @author Nabeel Ahmed
+ */
 public class ApplicationConstants {
 
     public static String SERVICE_PROVIDER_NAME = "Barco";

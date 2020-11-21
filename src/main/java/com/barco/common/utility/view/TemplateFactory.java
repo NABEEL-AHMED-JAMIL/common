@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @Component
 @Scope("prototype")
 public class TemplateFactory {
@@ -23,15 +25,19 @@ public class TemplateFactory {
 
     private Template template;
     private VelocityEngine engine;
+    private static volatile boolean isRDInitialized = false;
 
     @PostConstruct
     public void init() {
-        logger.info("+================Velocity-Start====================+");
-        this.engine = getEngine();
-        this.engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-        this.engine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-        this.engine.init();
-        logger.info("+================Velocity-End====================+");
+        if (!isRDInitialized) {
+            logger.info("+================Velocity-Start====================+");
+            this.engine = getEngine();
+            this.engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            this.engine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            this.engine.init();
+            logger.info("+================Velocity-End====================+");
+            isRDInitialized = true;
+        }
     }
 
     public TemplateFactory() { }
@@ -50,8 +56,6 @@ public class TemplateFactory {
         return template;
     }
 
-    private VelocityEngine getEngine() {
-        return new VelocityEngine();
-    }
+    private VelocityEngine getEngine() { return new VelocityEngine(); }
 
 }

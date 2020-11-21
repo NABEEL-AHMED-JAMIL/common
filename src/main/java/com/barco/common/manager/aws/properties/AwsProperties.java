@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @Component
 @Scope("prototype")
 public class AwsProperties {

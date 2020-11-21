@@ -3,7 +3,9 @@ package com.barco.common.utility;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 public class TimeUtil {
     
     public static Timestamp addHoursInTimeStamp(Timestamp timestamp, int hours) {

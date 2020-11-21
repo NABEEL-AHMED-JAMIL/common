@@ -13,7 +13,9 @@ import java.util.Map;
 import static com.barco.common.utility.view.TemplateType.EMAIL_ACCOUNT_CREATED_TEMPLATE;
 import static com.barco.common.utility.view.TemplateType.FORGOT_PASSWORD_TEMPLATE;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @Component
 @Scope("prototype")
 public class VelocityManager {
