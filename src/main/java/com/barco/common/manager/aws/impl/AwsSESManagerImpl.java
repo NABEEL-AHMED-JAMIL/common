@@ -31,7 +31,6 @@ public class AwsSESManagerImpl implements IAwsSESManager {
     @Autowired
     private AwsProperties awsProperties;
 
-    private static volatile boolean isRDInitialized = false;
     private AWSCredentials credentials;
     private AmazonSimpleEmailService amazonSES;
 
@@ -40,15 +39,12 @@ public class AwsSESManagerImpl implements IAwsSESManager {
     @Override
     @PostConstruct
     public void initializeAmazonS3Client() throws AmazonClientException {
-        if (!isRDInitialized) {
-            this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
-            logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-START====================+");
-            this.amazonSES = AmazonSimpleEmailServiceClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
-                .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
-            logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-END====================+");
-            isRDInitialized = true;
-        }
+        this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
+        logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-START====================+");
+        this.amazonSES = AmazonSimpleEmailServiceClientBuilder.standard()
+            .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
+            .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
+        logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-END====================+");
     }
 
     public AwsProperties getAwsProperties() { return awsProperties; }

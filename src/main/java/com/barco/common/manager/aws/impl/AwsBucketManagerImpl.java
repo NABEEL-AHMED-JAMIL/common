@@ -38,7 +38,6 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     @Autowired
     private AwsProperties awsProperties;
 
-    private static volatile boolean isRDInitialized = false;
     private AmazonS3 amazonS3;
     private AWSCredentials credentials;
 
@@ -47,15 +46,12 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     @Override
     @PostConstruct
     public void initializeAmazonS3Client() throws AmazonClientException {
-        if (!isRDInitialized) {
-            this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
-            logger.info("+================AWS-S3-START====================+");
-            this.amazonS3 = AmazonS3ClientBuilder.standard()
-                    .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
-                    .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
-            logger.info("+================AWS-S3-END====================+");
-            isRDInitialized = true;
-        }
+        this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
+        logger.info("+================AWS-S3-START====================+");
+        this.amazonS3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
+                .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
+        logger.info("+================AWS-S3-END====================+");
     }
 
     @Override

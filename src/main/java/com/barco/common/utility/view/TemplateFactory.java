@@ -25,19 +25,15 @@ public class TemplateFactory {
 
     private Template template;
     private VelocityEngine engine;
-    private static volatile boolean isRDInitialized = false;
 
     @PostConstruct
     public void init() {
-        if (!isRDInitialized) {
-            logger.info("+================Velocity-Start====================+");
-            this.engine = getEngine();
-            this.engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-            this.engine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-            this.engine.init();
-            logger.info("+================Velocity-End====================+");
-            isRDInitialized = true;
-        }
+        logger.info("+================Velocity-Start====================+");
+        this.engine = getEngine();
+        this.engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        this.engine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        this.engine.init();
+        logger.info("+================Velocity-End====================+");
     }
 
     public TemplateFactory() { }
