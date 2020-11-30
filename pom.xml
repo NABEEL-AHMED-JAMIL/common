@@ -26,6 +26,12 @@
 			<organization>Barco</organization>
 			<organizationUrl>https://github.com/NABEEL-AHMED-JAMIL</organizationUrl>
 		</developer>
+		<developer>
+			<name>Adeel Asghar</name>
+			<email>adeelasghar2011@gmail.com</email>
+			<organization>Barco</organization>
+			<organizationUrl>https://github.com/adeelasghar</organizationUrl>
+		</developer>
 	</developers>
 
 	<groupId>com.barco</groupId>
@@ -154,15 +160,12 @@
 	</dependencies>
 
 	<build>
-
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
-
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -179,12 +182,10 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
 		</plugins>
 	</build>
 
