@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -30,6 +31,9 @@ public class TokenHelper {
     @Value("${jwt.header}")
     private String AUTH_HEADER;
 
+    @Value("${jwt.cookie}")
+    private String AUTH_COOKIE;
+
     private String Bearer = "Bearer ";
 
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
@@ -48,6 +52,9 @@ public class TokenHelper {
     public String getAUTH_HEADER() { return AUTH_HEADER; }
     public void setAUTH_HEADER(String AUTH_HEADER) { this.AUTH_HEADER = AUTH_HEADER; }
 
+    public String getAUTH_COOKIE() { return AUTH_COOKIE; }
+    public void setAUTH_COOKIE(String AUTH_COOKIE) { this.AUTH_COOKIE = AUTH_COOKIE; }
+
     // will return the name of the user like email or username
     public String getUsernameFromToken(String token) throws Exception {
         return this.getClaimsFromToken(token).getSubject();
@@ -63,9 +70,31 @@ public class TokenHelper {
     }
 
     public String getToken(HttpServletRequest request) {
+        /**
+         *  Getting the token from Cookie store
+         */
+        Cookie authCookie = getCookieValueByName(request, AUTH_COOKIE);
+        if (authCookie != null) {
+            return authCookie.getValue();
+        }
+        /**
+         *  Getting the token from Authentication header
+         *  e.g Bearer your_token
+         */
         String authHeader = request.getHeader(this.AUTH_HEADER);
         if (authHeader != null && authHeader.startsWith(this.Bearer)) {
             return authHeader.substring(7);
+        }
+        return null;
+    }
+
+    public Cookie getCookieValueByName(HttpServletRequest request, String name) {
+        if (request.getCookies() != null) {
+            for (int i = 0; i < request.getCookies().length; i++) {
+                if (request.getCookies()[i].getName().equals(name)) {
+                    return request.getCookies()[i];
+                }
+            }
         }
         return null;
     }
