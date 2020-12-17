@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
-
+/**
+ * @author Nabeel Ahmed
+ */
 @SpringBootApplication
 public class CommonApplication {
 

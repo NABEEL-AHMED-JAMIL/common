@@ -29,18 +29,22 @@ public class VelocityManager {
     /* now render the template into a StringWriter */
     private StringWriter writer;
 
-    public VelocityContext getContext() { return context; }
-    public void setContext(VelocityContext context) { this.context = context; }
+    public VelocityContext getContext() {
+        return context;
+    }
+    public void setContext(VelocityContext context) {
+        this.context = context;
+    }
 
     public String getResponseMessage(TemplateType templateType, Map<String, Object> object) throws Exception {
         String responseMessage = null;
         this.setWriter(new StringWriter());
         this.setContext(new VelocityContext());
-        if(templateType.equals(EMAIL_ACCOUNT_CREATED_TEMPLATE)) {
+        if (templateType.equals(EMAIL_ACCOUNT_CREATED_TEMPLATE)) {
             //logger.info("Request Content :- " + object);
             this.context.put("request", object);
             responseMessage = this.getWriterResponse(templateType).toString();
-        } else if(templateType.equals(FORGOT_PASSWORD_TEMPLATE)) {
+        } else if (templateType.equals(FORGOT_PASSWORD_TEMPLATE)) {
             //logger.info("Request Content :- " + object);
             this.context.put("request", object);
             responseMessage = this.getWriterResponse(templateType).toString();
@@ -50,7 +54,7 @@ public class VelocityManager {
 
     private StringWriter getWriterResponse(TemplateType templateType) throws Exception {
         Template template = this.templateFactory.getTemplate(templateType);
-        if(template != null) {
+        if (template != null) {
             template.merge(this.getContext(), this.getWriter());
             //logger.info("Response Content :- " + this.getWriter().toString().replaceAll("\\s+",""));
             return this.getWriter();
@@ -58,7 +62,11 @@ public class VelocityManager {
         throw new NullPointerException("Template Not Found");
     }
 
-    public StringWriter getWriter() { return writer; }
-    public void setWriter(StringWriter writer) { this.writer = writer; }
+    public StringWriter getWriter() {
+        return writer;
+    }
+    public void setWriter(StringWriter writer) {
+        this.writer = writer;
+    }
 
 }

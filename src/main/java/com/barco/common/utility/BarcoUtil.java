@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,6 +37,45 @@ public class BarcoUtil {
             ((jsonObj.get(key).isJsonObject() && !jsonObj.getAsJsonObject(key).entrySet().isEmpty()) ||
             (jsonObj.get(key).isJsonArray() && 0 < jsonObj.getAsJsonArray(key).size()) ||
             (jsonObj.get(key).isJsonPrimitive() && StringUtils.isNotBlank(jsonObj.get(key).getAsString()))));
+    }
+
+    public static boolean isNull(Long str) {
+        if (str == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNull(String str) {
+        if (str == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNull(Boolean str) {
+        if (str == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNull(Double str) {
+        if (str == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNull(Date dt) {
+        if (dt == null) {
+            return true;
+        } else if (String.valueOf(dt) == null) {
+            return true;
+        } else if (String.valueOf(dt).trim().length() <= 0) {
+            return true;
+        }
+        return false;
     }
 
 }

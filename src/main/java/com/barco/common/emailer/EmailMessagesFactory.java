@@ -90,7 +90,7 @@ public class EmailMessagesFactory {
         this.sendEmailRequest = new SendEmailRequest();
         this.sendEmailRequest.withSource(emailMessageDTO.getFromEmail());
         logger.info("From Email " + emailMessageDTO.getFromEmail());
-        if(emailMessageDTO.getRecipientsMulti() != null && emailMessageDTO.getRecipientsMulti().size() > 0) {
+        if (emailMessageDTO.getRecipientsMulti() != null && emailMessageDTO.getRecipientsMulti().size() > 0) {
             this.sendEmailRequest.withDestination(new Destination().withToAddresses(emailMessageDTO.getRecipientsMulti()));
             logger.info("To Email " + emailMessageDTO.getRecipientsMulti());
         } else {

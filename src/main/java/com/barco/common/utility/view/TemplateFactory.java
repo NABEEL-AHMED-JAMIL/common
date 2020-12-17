@@ -52,6 +52,8 @@ public class TemplateFactory {
         return template;
     }
 
-    private VelocityEngine getEngine() { return new VelocityEngine(); }
+    private VelocityEngine getEngine() {
+        return new VelocityEngine();
+    }
 
 }

@@ -24,30 +24,60 @@ public class DatabaseExchange {
     private String databaseUser;
     private String databasePassword;
 
-    public DatabaseExchange() { }
+    public DatabaseExchange() {}
 
-    public String getDataBaseType() { return dataBaseType; }
-    public void setDataBaseType(String dataBaseType) { this.dataBaseType = dataBaseType; }
+    public String getDataBaseType() {
+        return dataBaseType;
+    }
+    public void setDataBaseType(String dataBaseType) {
+        this.dataBaseType = dataBaseType;
+    }
 
-    public String getDriver() { return driver; }
-    public void setDriver(String driver) { this.driver = driver; }
+    public String getDriver() {
+        return driver;
+    }
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
 
-    public String getDatabaseServer() { return databaseServer; }
-    public void setDatabaseServer(String databaseServer) { this.databaseServer = databaseServer; }
+    public String getDatabaseServer() {
+        return databaseServer;
+    }
+    public void setDatabaseServer(String databaseServer) {
+        this.databaseServer = databaseServer;
+    }
 
-    public Long getDatabasePort() { return databasePort; }
-    public void setDatabasePort(Long databasePort) { this.databasePort = databasePort; }
+    public Long getDatabasePort() {
+        return databasePort;
+    }
+    public void setDatabasePort(Long databasePort) {
+        this.databasePort = databasePort;
+    }
 
-    public String getDatabaseName() { return databaseName; }
-    public void setDatabaseName(String databaseName) { this.databaseName = databaseName; }
+    public String getDatabaseName() {
+        return databaseName;
+    }
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
 
-    public String getDatabaseUser() { return databaseUser; }
-    public void setDatabaseUser(String databaseUser) { this.databaseUser = databaseUser; }
+    public String getDatabaseUser() {
+        return databaseUser;
+    }
+    public void setDatabaseUser(String databaseUser) {
+        this.databaseUser = databaseUser;
+    }
 
-    public String getDatabasePassword() { return databasePassword; }
-    public void setDatabasePassword(String databasePassword) { this.databasePassword = databasePassword; }
+    public String getDatabasePassword() {
+        return databasePassword;
+    }
+    public void setDatabasePassword(String databasePassword) {
+        this.databasePassword = databasePassword;
+    }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

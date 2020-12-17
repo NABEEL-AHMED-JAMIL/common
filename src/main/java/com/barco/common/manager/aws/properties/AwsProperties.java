@@ -50,22 +50,44 @@ public class AwsProperties {
         }
     }
 
-    public String getEndpointUrl() { return endpointUrl; }
-    public void setEndpointUrl(String endpointUrl) { this.endpointUrl = endpointUrl; }
+    public String getEndpointUrl() {
+        return endpointUrl;
+    }
+    public void setEndpointUrl(String endpointUrl) {
+        this.endpointUrl = endpointUrl;
+    }
 
-    public String getRegion() { return region; }
-    public void setRegion(String region) { this.region = region; }
+    public String getRegion() {
+        return region;
+    }
+    public void setRegion(String region) {
+        this.region = region;
+    }
 
-    public String getAccessKey() { return accessKey; }
-    public void setAccessKey(String accessKey) { this.accessKey = accessKey; }
+    public String getAccessKey() {
+        return accessKey;
+    }
+    public void setAccessKey(String accessKey) {
+        this.accessKey = accessKey;
+    }
 
-    public String getSecretKey() { return secretKey; }
-    public void setSecretKey(String secretKey) { this.secretKey = secretKey; }
+    public String getSecretKey() {
+        return secretKey;
+    }
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
 
-    public String getBucketName() { return bucketName; }
-    public void setBucketName(String bucketName) { this.bucketName = bucketName; }
+    public String getBucketName() {
+        return bucketName;
+    }
+    public void setBucketName(String bucketName) {
+        this.bucketName = bucketName;
+    }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

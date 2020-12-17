@@ -5,16 +5,16 @@ package com.barco.common.utility;
  */
 public class ApplicationConstants {
 
-    public static String SERVICE_PROVIDER_NAME = "Barco";
+    public static final String SERVICE_PROVIDER_NAME = "Barco";
     public static final String INVALID_AUTH = "Auth-User-Detail Invalid";
     public static final String INTERNAL_ERROR_MSG = "Sorry, couldn't proceed due to some internal error.";
     public static final String UNEXPECTED_ERROR = "Unexpected error occur, please contact to you service provider.";
-    public static String HTTP_404_MSG = "Data not found!.";
-    public static String JOB_RUNNING_STAGE = "Job in running state so no action delete or inactive perform";
-    public static String HTTP_BAD_REQUEST = "Sending Request Not Valid";
-    public static String SUCCESS_MSG = "Request has been proceed successfully.";
-    public static String STORAGE_ATTACHE_WITH_TASK = "Storage attache with task";
-    public static String Task_ATTACHE_WITH_JOB = "Task attache with jon";
+    public static final String HTTP_404_MSG = "Data not found!.";
+    public static final String JOB_RUNNING_STAGE = "Job in running state so no action delete or inactive perform";
+    public static final String HTTP_BAD_REQUEST = "Sending Request Not Valid";
+    public static final String SUCCESS_MSG = "Request has been proceed successfully.";
+    public static final String STORAGE_ATTACHE_WITH_TASK = "Storage attache with task";
+    public static final String Task_ATTACHE_WITH_JOB = "Task attache with jon";
     public static final String BARCO_STRING = "scheduler-";
     public static final String INVALID_REQUEST = "Invalid Request";
     public static final String PASSWORD_SHOULD_NOT_BE_EMPTY = "Password should not empty";

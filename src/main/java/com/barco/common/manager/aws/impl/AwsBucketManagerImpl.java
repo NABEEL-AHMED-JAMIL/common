@@ -41,7 +41,7 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     private AmazonS3 amazonS3;
     private AWSCredentials credentials;
 
-    public AwsBucketManagerImpl() { }
+    public AwsBucketManagerImpl() {}
 
     @Override
     @PostConstruct
@@ -49,15 +49,15 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
         logger.info("+================AWS-S3-START====================+");
         this.amazonS3 = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
-                .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
+            .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
+            .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
         logger.info("+================AWS-S3-END====================+");
     }
 
     @Override
     public String createBucket(String bucketName) throws AmazonClientException {
         String bucketLocation = null;
-        if(this.isBucketExist(bucketName)) {
+        if (this.isBucketExist(bucketName)) {
             this.amazonS3.createBucket(new CreateBucketRequest(bucketName));
             bucketLocation = this.amazonS3.getBucketLocation(new GetBucketLocationRequest(bucketName));
             logger.info("New Bucket location:- " + bucketLocation);
@@ -67,7 +67,7 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     @Override
     public Boolean isBucketExist(String bucketName) throws AmazonClientException {
-        if(bucketName != null && !bucketName.equals("")) {
+        if (bucketName != null && !bucketName.equals("")) {
             return this.amazonS3.doesBucketExist(bucketName);
         }
         throw new NullPointerException("Invalid bucket name");
@@ -85,7 +85,7 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     @Override
     public Boolean deleteBucket(String bucketName) throws AmazonClientException {
-        if(this.amazonS3.doesBucketExist(bucketName)) {
+        if (this.amazonS3.doesBucketExist(bucketName)) {
             this.amazonS3.deleteBucket(bucketName);
             return true;
         }
@@ -94,7 +94,7 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     @Override
     public Boolean isObjKeyExist(String bucketName, String objectKey) throws AmazonClientException {
-        if(isBucketExist(bucketName) && (objectKey != null && !objectKey.equals(""))) {
+        if (isBucketExist(bucketName) && (objectKey != null && !objectKey.equals(""))) {
             return this.amazonS3.doesObjectExist(bucketName,objectKey);
         }
         throw new NullPointerException("Invalid objectKey name");
@@ -104,9 +104,12 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     public AwsBucketObjectDetail uploadToBucket(String bucketName, String objKey, InputStream inputStream)
             throws AmazonClientException, IOException {
         logger.debug("Uploading a new object to S3 from a file > " + objKey);
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objKey, inputStream, new ObjectMetadata());
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objKey,
+                inputStream, new ObjectMetadata());
         this.amazonS3.putObject(putObjectRequest);
-        if(inputStream != null) { inputStream.close(); }
+        if (inputStream != null) {
+            inputStream.close();
+        }
         AwsBucketObjectDetail awsBucketObjectDetail = new AwsBucketObjectDetail();
         awsBucketObjectDetail.setBucketName(bucketName);
         awsBucketObjectDetail.setObjKey(objKey);
@@ -123,7 +126,8 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     @Override
     public Map<String, Object> getObjectMetadata(String objKey, String bucketName) throws AmazonClientException {
-        return this.amazonS3.getObject(new GetObjectRequest(bucketName, objKey)).getObjectMetadata().getRawMetadata();
+        return this.amazonS3.getObject(new GetObjectRequest(bucketName, objKey))
+            .getObjectMetadata().getRawMetadata();
     }
 
     @Override
@@ -141,6 +145,8 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

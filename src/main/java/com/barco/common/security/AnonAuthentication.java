@@ -17,25 +17,39 @@ public class AnonAuthentication extends AbstractAuthenticationToken {
     }
 
     @Override
-    public Object getCredentials() { return null; }
+    public Object getCredentials() {
+        return null;
+    }
 
     @Override
-    public Object getPrincipal() { return null; }
+    public Object getPrincipal() {
+        return null;
+    }
 
     @Override
-    public boolean isAuthenticated() { return true; }
+    public boolean isAuthenticated() {
+        return true;
+    }
 
     @Override
-    public int hashCode() { return 7; }
+    public int hashCode() {
+        return 7;
+    }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) { return true; }
-        if (obj == null) { return false; }
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
         return getClass() == obj.getClass();
     }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

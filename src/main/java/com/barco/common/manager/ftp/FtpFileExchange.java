@@ -1,6 +1,7 @@
 package com.barco.common.manager.ftp;
 
 import com.google.gson.Gson;
+import com.sun.security.sasl.Provider;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPReply;
@@ -42,33 +43,43 @@ public class FtpFileExchange {
     private String password;
     private ModifiedFTPSClient ftpsClient;
 
-    public FtpFileExchange() { }
+    public FtpFileExchange() {}
 
-    public String getHost() { return host; }
+    public String getHost() {
+        return host;
+    }
     public FtpFileExchange setHost(String host) {
         this.host = host;
         return this;
     }
 
-    public Integer getPort() { return port; }
+    public Integer getPort() {
+        return port;
+    }
     public FtpFileExchange setPort(Integer port) {
         this.port = port;
         return this;
     }
 
-    public String getUser() { return user; }
+    public String getUser() {
+        return user;
+    }
     public FtpFileExchange setUser(String user) {
         this.user = user;
         return this;
     }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
     public FtpFileExchange setPassword(String password) {
         this.password = password;
         return this;
     }
 
-    public String getDirectoryPath() { return directoryPath; }
+    public String getDirectoryPath() {
+        return directoryPath;
+    }
     public FtpFileExchange setDirectoryPath(String directoryPath) {
         this.directoryPath = directoryPath;
         return this;
@@ -76,15 +87,13 @@ public class FtpFileExchange {
 
     public Boolean connectionOpen() throws IOException, NoSuchAlgorithmException, KeyManagementException {
         Boolean isLogin = false;
-        if(this.port > 100) {
-            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+        if (this.port > 100) {
+            Security.addProvider(new Provider());
             TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() { return null; }
-                    public void checkServerTrusted(X509Certificate[] certs, String authType)
-                         throws CertificateException { return; }
-                    public void checkClientTrusted(X509Certificate[] certs, String authType)
-                         throws CertificateException { return; }
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) throws CertificateException { return; }
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) throws CertificateException { return; }
                 }
             };
             SSLContext sc = SSLContext.getInstance("SSL");
@@ -103,7 +112,7 @@ public class FtpFileExchange {
         logger.info("FTP :- Connection try :- IP :- (" + this.host + ") , Port :- " + this.port + " Done");
         int reply = this.ftpsClient.getReplyCode();
         logger.info("FTP :- Connection Code :- " + reply);
-        if(!FTPReply.isPositiveCompletion(reply)) {
+        if (!FTPReply.isPositiveCompletion(reply)) {
             this.ftpsClient.disconnect();
             throw new IOException("Exception in connecting to FTP Server");
         }
@@ -115,8 +124,8 @@ public class FtpFileExchange {
 
     public Boolean uploadFile(String fileName, InputStream inputStream) throws Exception {
         Boolean isUpload = false;
-        if(this.directoryPath != null) {
-            if(!this.isDirectoryExist(this.directoryPath)) {
+        if (this.directoryPath != null) {
+            if (!this.isDirectoryExist(this.directoryPath)) {
                 throw new Exception("Directory Not Exist");
             }
             // if directory exist then change the directory
@@ -129,7 +138,7 @@ public class FtpFileExchange {
         // show the directory where file exist
         logger.info("Current Directory " , this.ftpsClient.printWorkingDirectory(), "Final Name :- " + fileName);
         isUpload = this.ftpsClient.storeFile(fileName, inputStream);
-        if(isUpload) {
+        if (isUpload) {
             logger.info("The file is uploaded successfully.");
         }
         // close the stream
@@ -139,13 +148,13 @@ public class FtpFileExchange {
 
     public Boolean isDirectoryExist(String directoryPath) throws IOException {
         Boolean isDirectory = false;
-        if(this.ftpsClient.cwd(directoryPath)==550){
+        if (this.ftpsClient.cwd(directoryPath) == 550) {
             logger.info("Directory Doesn't Exists");
             isDirectory = false;
-        }else if(this.ftpsClient.cwd(directoryPath)==250){
+        } else if (this.ftpsClient.cwd(directoryPath) == 250) {
             isDirectory = true;
             logger.info("Directory Exists");
-        }else{
+        } else {
             isDirectory = false;
             logger.info("Unknown Status");
         }
@@ -154,7 +163,7 @@ public class FtpFileExchange {
     }
 
     public Boolean createDirectory(String directoryPath) throws IOException {
-        if(this.isDirectoryExist(directoryPath)) {
+        if (this.isDirectoryExist(directoryPath)) {
             logger.info("Directory Already Exist");
             return false;
         }
@@ -181,9 +190,13 @@ public class FtpFileExchange {
 
     private class ModifiedFTPSClient extends FTPSClient {
 
-        public ModifiedFTPSClient() { super("TLS", false); }
+        public ModifiedFTPSClient() {
+            super("TLS", false);
+        }
 
-        public ModifiedFTPSClient(boolean isImplicit) { super("TLS", isImplicit); }
+        public ModifiedFTPSClient(boolean isImplicit) {
+            super("TLS", isImplicit);
+        }
 
         // TLS will be default there in ftps-client
         public ModifiedFTPSClient(boolean isImplicit, SSLContext sc) {
@@ -219,6 +232,8 @@ public class FtpFileExchange {
     }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class AsyncSESTask implements Runnable {
 
-    public static Logger logger = LogManager.getLogger(AsyncSESTask.class);
+    public Logger logger = LogManager.getLogger(AsyncSESTask.class);
 
     @Autowired
     private AwsSESManagerImpl awsSESManager;
@@ -26,31 +26,45 @@ public class AsyncSESTask implements Runnable {
     private SendEmailRequest sendEmailRequest;
     private SendRawEmailRequest sendRawEmailRequest;
 
-    public AsyncSESTask() { }
+    public AsyncSESTask() {}
 
     // give free hand to the request and email give to the separate thread
     @Override
     public void run() {
         // false then send attache email
-        if(this.getSimple()){
+        if (this.getSimple()) {
             logger.debug("===>>>>>>Send-Simple-Email<<<<<<=======");
             this.awsSESManager.sendSESEmail(this.getSendEmailRequest());
-        }else{
+        } else {
             logger.debug("===>>>>>>Send-Raw-Email<<<<<<=======");
             this.awsSESManager.sendRawEmail(this.getSendRawEmailRequest());
         }
     }
 
-    public Boolean getSimple() { return isSimple; }
-    public void setSimple(Boolean simple) { isSimple = simple; }
+    public Boolean getSimple() {
+        return isSimple;
+    }
+    public void setSimple(Boolean simple) {
+        isSimple = simple;
+    }
 
-    public SendEmailRequest getSendEmailRequest() { return sendEmailRequest; }
-    public void setSendEmailRequest(SendEmailRequest sendEmailRequest) { this.sendEmailRequest = sendEmailRequest; }
+    public SendEmailRequest getSendEmailRequest() {
+        return sendEmailRequest;
+    }
+    public void setSendEmailRequest(SendEmailRequest sendEmailRequest) {
+        this.sendEmailRequest = sendEmailRequest;
+    }
 
-    public SendRawEmailRequest getSendRawEmailRequest() { return sendRawEmailRequest; }
-    public void setSendRawEmailRequest(SendRawEmailRequest sendRawEmailRequest) { this.sendRawEmailRequest = sendRawEmailRequest; }
+    public SendRawEmailRequest getSendRawEmailRequest() {
+        return sendRawEmailRequest;
+    }
+    public void setSendRawEmailRequest(SendRawEmailRequest sendRawEmailRequest) {
+        this.sendRawEmailRequest = sendRawEmailRequest;
+    }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

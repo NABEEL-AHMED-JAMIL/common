@@ -23,18 +23,32 @@ public class AsyncTaskProperties {
     @Value("${asyncetaskexecutor.idleThreadLife}")
     private Integer idleThreadLife;
 
-    public AsyncTaskProperties() { }
+    public AsyncTaskProperties() {}
 
-    public Integer getMinThreads() { return minThreads; }
-    public void setMinThreads(Integer minThreads) { this.minThreads = minThreads; }
+    public Integer getMinThreads() {
+        return minThreads;
+    }
+    public void setMinThreads(Integer minThreads) {
+        this.minThreads = minThreads;
+    }
 
-    public Integer getMaxThreads() { return maxThreads; }
-    public void setMaxThreads(Integer maxThreads) { this.maxThreads = maxThreads; }
+    public Integer getMaxThreads() {
+        return maxThreads;
+    }
+    public void setMaxThreads(Integer maxThreads) {
+        this.maxThreads = maxThreads;
+    }
 
-    public Integer getIdleThreadLife() { return idleThreadLife; }
-    public void setIdleThreadLife(Integer idleThreadLife) { this.idleThreadLife = idleThreadLife; }
+    public Integer getIdleThreadLife() {
+        return idleThreadLife;
+    }
+    public void setIdleThreadLife(Integer idleThreadLife) {
+        this.idleThreadLife = idleThreadLife;
+    }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

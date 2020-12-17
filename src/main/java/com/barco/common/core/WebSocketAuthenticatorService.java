@@ -21,10 +21,10 @@ public class WebSocketAuthenticatorService {
 
     public UsernamePasswordAuthenticationToken getAuthenticatedOrFail(final String  username,
         final String password) throws AuthenticationException {
-        if(username == null || username.trim().isEmpty()) {
+        if (username == null || username.trim().isEmpty()) {
             throw new AuthenticationCredentialsNotFoundException("Username was null or empty.");
         }
-        if(password == null || password.trim().isEmpty()) {
+        if (password == null || password.trim().isEmpty()) {
             throw new AuthenticationCredentialsNotFoundException("Password was null or empty.");
         }
         // null credentials, we do not pass the password along, MUST provide at least one role

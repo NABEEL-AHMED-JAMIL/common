@@ -62,14 +62,14 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         FilterChain filterChain) throws ServletException, IOException {
         // get token from the request
         String authToken = this.tokenHelper.getToken(httpServletRequest);
-        if (authToken != null && !skipPathRequest(httpServletRequest, pathsToSkip)) {
+        if (authToken != null) {
             try {
                 String requestJson = this.tokenHelper.getUsernameFromToken(authToken);
                 if (requestJson != null) {
                     logger.debug("Verify AppUser Detail With Token.");
                     JsonParser parser = new JsonParser();
                     JsonObject mainObject = parser.parse(requestJson).getAsJsonObject();
-                    if(BarcoUtil.hasKeyValue(mainObject, USERNAME)) {
+                    if (BarcoUtil.hasKeyValue(mainObject, USERNAME)) {
                         TokenBasedAuthentication authentication = new TokenBasedAuthentication(
                             this.userDetailsService.loadUserByUsername(mainObject.get(USERNAME).getAsString()));
                         authentication.setToken(authToken);

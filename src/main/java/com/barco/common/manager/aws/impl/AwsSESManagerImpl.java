@@ -26,7 +26,7 @@ import javax.annotation.PostConstruct;
 @Scope("prototype")
 public class AwsSESManagerImpl implements IAwsSESManager {
 
-    public static Logger logger = LogManager.getLogger(AwsSESManagerImpl.class);
+    public Logger logger = LogManager.getLogger(AwsSESManagerImpl.class);
 
     @Autowired
     private AwsProperties awsProperties;
@@ -34,7 +34,7 @@ public class AwsSESManagerImpl implements IAwsSESManager {
     private AWSCredentials credentials;
     private AmazonSimpleEmailService amazonSES;
 
-    public AwsSESManagerImpl() { }
+    public AwsSESManagerImpl() {}
 
     @Override
     @PostConstruct
@@ -47,8 +47,12 @@ public class AwsSESManagerImpl implements IAwsSESManager {
         logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-END====================+");
     }
 
-    public AwsProperties getAwsProperties() { return awsProperties; }
-    public void setAwsProperties(AwsProperties awsProperties) { this.awsProperties = awsProperties; }
+    public AwsProperties getAwsProperties() {
+        return awsProperties;
+    }
+    public void setAwsProperties(AwsProperties awsProperties) {
+        this.awsProperties = awsProperties;
+    }
 
     public void sendSESEmail(SendEmailRequest request) throws AmazonClientException {
         logger.info("Simple Email Send Start.");

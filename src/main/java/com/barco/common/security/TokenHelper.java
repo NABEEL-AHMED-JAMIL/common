@@ -40,20 +40,40 @@ public class TokenHelper {
 
     public TokenHelper() {}
 
-    public String getAPP_NAME() { return APP_NAME; }
-    public void setAPP_NAME(String APP_NAME) { this.APP_NAME = APP_NAME; }
+    public String getAPP_NAME() {
+        return APP_NAME;
+    }
+    public void setAPP_NAME(String APP_NAME) {
+        this.APP_NAME = APP_NAME;
+    }
 
-    public String getSECRET() { return SECRET; }
-    public void setSECRET(String SECRET) { this.SECRET = SECRET; }
+    public String getSECRET() {
+        return SECRET;
+    }
+    public void setSECRET(String SECRET) {
+        this.SECRET = SECRET;
+    }
 
-    public int getEXPIRES_IN() { return EXPIRES_IN; }
-    public void setEXPIRES_IN(int EXPIRES_IN) { this.EXPIRES_IN = EXPIRES_IN; }
+    public int getEXPIRES_IN() {
+        return EXPIRES_IN;
+    }
+    public void setEXPIRES_IN(int EXPIRES_IN) {
+        this.EXPIRES_IN = EXPIRES_IN;
+    }
 
-    public String getAUTH_HEADER() { return AUTH_HEADER; }
-    public void setAUTH_HEADER(String AUTH_HEADER) { this.AUTH_HEADER = AUTH_HEADER; }
+    public String getAUTH_HEADER() {
+        return AUTH_HEADER;
+    }
+    public void setAUTH_HEADER(String AUTH_HEADER) {
+        this.AUTH_HEADER = AUTH_HEADER;
+    }
 
-    public String getAUTH_COOKIE() { return AUTH_COOKIE; }
-    public void setAUTH_COOKIE(String AUTH_COOKIE) { this.AUTH_COOKIE = AUTH_COOKIE; }
+    public String getAUTH_COOKIE() {
+        return AUTH_COOKIE;
+    }
+    public void setAUTH_COOKIE(String AUTH_COOKIE) {
+        this.AUTH_COOKIE = AUTH_COOKIE;
+    }
 
     // will return the name of the user like email or username
     public String getUsernameFromToken(String token) throws Exception {
@@ -70,13 +90,13 @@ public class TokenHelper {
     }
 
     public String getToken(HttpServletRequest request) {
-        /**
+        /* *
          *  Getting the token from Cookie store
-         */
-        Cookie authCookie = getCookieValueByName(request, AUTH_COOKIE);
-        if (authCookie != null) {
-            return authCookie.getValue();
-        }
+         *  Cookie authCookie = getCookieValueByName(request, AUTH_COOKIE);
+         *  if (authCookie != null) {
+         *    return authCookie.getValue();
+         *  }
+         *  */
         /**
          *  Getting the token from Authentication header
          *  e.g Bearer your_token
@@ -99,13 +119,21 @@ public class TokenHelper {
         return null;
     }
 
-    private long getCurrentTimeMillis() { return System.currentTimeMillis(); }
+    private long getCurrentTimeMillis() {
+        return System.currentTimeMillis();
+    }
 
-    private Date generateCurrentDate() { return new Date(getCurrentTimeMillis()); }
+    private Date generateCurrentDate() {
+        return new Date(getCurrentTimeMillis());
+    }
 
-    private Date generateExpirationDate() { return new Date(getCurrentTimeMillis() + this.EXPIRES_IN * 1000); }
+    private Date generateExpirationDate() {
+        return new Date(getCurrentTimeMillis() + this.EXPIRES_IN * 1000);
+    }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
 }

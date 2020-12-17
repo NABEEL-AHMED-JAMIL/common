@@ -83,9 +83,16 @@ public class EfsFileExchange {
         }
     }
 
-    public String getBasePathTempDire() { return basePathTempDire; }
-    public void setBasePathTempDire(String basePathTempDire) { this.basePathTempDire = basePathTempDire; }
+    public String getBasePathTempDire() {
+        return basePathTempDire;
+    }
+    public void setBasePathTempDire(String basePathTempDire) {
+        this.basePathTempDire = basePathTempDire;
+    }
 
     @Override
-    public String toString() { return new Gson().toJson(this); }
+    public String toString() {
+        return new Gson().toJson(this);
+    }
+
 }
