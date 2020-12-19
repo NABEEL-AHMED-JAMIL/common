@@ -20,7 +20,7 @@ import static com.barco.common.utility.view.TemplateType.FORGOT_PASSWORD_TEMPLAT
 @Scope("prototype")
 public class VelocityManager {
 
-    private final Logger logger = LogManager.getLogger(VelocityManager.class);
+    private Logger logger = LogManager.getLogger(VelocityManager.class);
 
     @Autowired
     private TemplateFactory templateFactory;
@@ -41,11 +41,11 @@ public class VelocityManager {
         this.setWriter(new StringWriter());
         this.setContext(new VelocityContext());
         if (templateType.equals(EMAIL_ACCOUNT_CREATED_TEMPLATE)) {
-            //logger.info("Request Content :- " + object);
+            logger.info("Request Content :- " + object);
             this.context.put("request", object);
             responseMessage = this.getWriterResponse(templateType).toString();
         } else if (templateType.equals(FORGOT_PASSWORD_TEMPLATE)) {
-            //logger.info("Request Content :- " + object);
+            logger.info("Request Content :- " + object);
             this.context.put("request", object);
             responseMessage = this.getWriterResponse(templateType).toString();
         }
@@ -56,7 +56,7 @@ public class VelocityManager {
         Template template = this.templateFactory.getTemplate(templateType);
         if (template != null) {
             template.merge(this.getContext(), this.getWriter());
-            //logger.info("Response Content :- " + this.getWriter().toString().replaceAll("\\s+",""));
+            logger.info("Response Content :- " + this.getWriter().toString().replaceAll("\\s+",""));
             return this.getWriter();
         }
         throw new NullPointerException("Template Not Found");

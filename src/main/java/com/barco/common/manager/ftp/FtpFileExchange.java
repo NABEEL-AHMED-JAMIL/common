@@ -1,7 +1,6 @@
 package com.barco.common.manager.ftp;
 
 import com.google.gson.Gson;
-import com.sun.security.sasl.Provider;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPReply;
@@ -88,7 +87,8 @@ public class FtpFileExchange {
     public Boolean connectionOpen() throws IOException, NoSuchAlgorithmException, KeyManagementException {
         Boolean isLogin = false;
         if (this.port > 100) {
-            Security.addProvider(new Provider());
+
+            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() { return null; }
