@@ -39,6 +39,13 @@ public class BarcoUtil {
             (jsonObj.get(key).isJsonPrimitive() && StringUtils.isNotBlank(jsonObj.get(key).getAsString()))));
     }
 
+    public static boolean isNull(Object str) {
+        if (str == null) {
+            return true;
+        }
+        return false;
+    }
+
     public static boolean isNull(Long str) {
         if (str == null) {
             return true;

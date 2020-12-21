@@ -44,7 +44,7 @@ public class ApplicationConstants {
     public static final String EMAIL_ALREADY_EXIST = "Email already exist";
     public static final String ACCESS_SERVICE_MISSING = "Access service missing";
     public static final String ADMIN_USER_DETAIL_MISSING = "Admin user detail missing";
-    public static final String CLASS_NAME_MISSING = "Service class name missing";
+    public static final String SERVICE_NAME_MISSING = "Service not found";
     public static final String STORAGE_KEY_TYPE_MISSING = "Storage key type not be null";
     public static final String TASK_JSON_MISSING = "Task Json not be null";
     public static final String STORAGE_KEY_JSON_MISSING = "Storage Key Json not be null";
