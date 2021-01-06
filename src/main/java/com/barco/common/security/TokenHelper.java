@@ -4,12 +4,16 @@ import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -18,6 +22,8 @@ import java.util.Date;
 @Component
 @Scope("prototype")
 public class TokenHelper {
+
+    private Logger logger = LogManager.getLogger(TokenHelper.class);
 
     @Value("${jwt.app.name}")
     private String APP_NAME;
@@ -39,6 +45,13 @@ public class TokenHelper {
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
     public TokenHelper() {}
+
+    @PostConstruct
+    public void init() {
+        logger.info("+================TokenHelper-Start====================+");
+        this.setSECRET(Base64.getEncoder().encodeToString(this.getSECRET().getBytes()));
+        logger.info("+================TokenHelper-End====================+");
+    }
 
     public String getAPP_NAME() {
         return APP_NAME;

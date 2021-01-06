@@ -15,6 +15,7 @@ public class ApplicationConstants {
     public static final String SUCCESS_MSG = "Request has been proceed successfully.";
     public static final String STORAGE_ATTACHE_WITH_TASK = "Storage attache with task";
     public static final String Task_ATTACHE_WITH_JOB = "Task attache with jon";
+    public static final String ACCESS_SERVICE_ATTACHE_WITH_USERS = "Access service attache with users";
     public static final String BARCO_STRING = "scheduler-";
     public static final String INVALID_REQUEST = "Invalid Request";
     public static final String PASSWORD_SHOULD_NOT_BE_EMPTY = "Password should not empty";
