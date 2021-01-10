@@ -56,7 +56,8 @@ public class VelocityManager {
         Template template = this.templateFactory.getTemplate(templateType);
         if (template != null) {
             template.merge(this.getContext(), this.getWriter());
-            logger.info("Response Content :- " + this.getWriter().toString().replaceAll("\\s+",""));
+            logger.info("Response Content :- " + this.getWriter().toString()
+                    .replaceAll("\\s+",""));
             return this.getWriter();
         }
         throw new NullPointerException("Template Not Found");

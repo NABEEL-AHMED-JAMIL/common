@@ -53,37 +53,25 @@ public class ApiCaller {
 
     public ResponseEntity apiCaller(Object body, HttpMethod httpMethod, String url, Map<String, String> headerMap) throws Exception {
         logger.debug(">>>>>>> ApiCaller := apiCaller Start");
-        String log = "Request := End-Point " + url + " Request := Body " + body + " Request := Header  " + headerMap + " Request := Time " + new Date();
-        logger.info(log);
         this.response = this.restTemplate.exchange(url, httpMethod, new HttpEntity<>(!httpMethod.equals(HttpMethod.GET) ? body: null,
             this.fillHeader(headerMap)), String.class);
-        log = "Response := ActiveStatus " + this.response.getStatusCode() + " Response := Body " + this.response.getBody() + " Response := Time " + new Date();
-        logger.info(log);
         logger.debug(">>>>>>> ApiCaller := apiCaller End");
         return this.response;
     }
 
     public ResponseEntity downloadFile(HttpMethod httpMethod, String url, Map<String, String> headerMap) throws Exception {
-        logger.debug(">>>>>>> ApiCaller := downloadFile Start");
-        String log = "Request := End-Point " + url + " Request := Header " + headerMap + " Request := Time " + new Date();
-        logger.info(log);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
         this.fillHeader(headers, headerMap);
         this.restTemplate.getMessageConverters().add(new ByteArrayHttpMessageConverter());
         HttpEntity<String> entity = new HttpEntity<>(headers);
         this.response = this.restTemplate.exchange(url, httpMethod, entity, byte[].class);
-        log = "Response := ActiveStatus " + this.response.getStatusCode() + " Response := Body " + this.response.getBody() + " Response := Time " + new Date();
-        logger.info(log);
-        logger.debug(">>>>>>> ApiCaller := downloadFile End");
         //Files.write(Paths.get("E:\\demo1.csv"), response.getBody());
         return response;
     }
 
     public String uploadFile(String url, File fileSource, Map<String, String> headerMap) throws Exception {
         logger.debug(">>>>>>> ApiCaller := uploadFile Start");
-        String log = "Request := End-Point " + url + " Request := Header " + headerMap + " Request := Time " + new Date();
-        logger.info(log);
         final InputStream fis = new FileInputStream(fileSource);
         final RequestCallback requestCallback = new RequestCallback() {
             @Override
@@ -103,8 +91,6 @@ public class ApiCaller {
 
     private String uploadFile(String url, InputStream fis, Map<String, String> headerMap) throws Exception {
         logger.debug(">>>>>>> ApiCaller := uploadFile Start");
-        String log = "Request := End-Point " + url + " Request := Header " + headerMap + " Request := Time " + new Date();
-        logger.info(log);
         final RequestCallback requestCallback = new RequestCallback() {
             @Override
             public void doWithRequest(final ClientHttpRequest request) throws IOException {
@@ -172,7 +158,6 @@ public class ApiCaller {
                         contentResponse.setType("json").setContent(getOutputByte(bodyPart));
                         this.multipartContentResponses.add(contentResponse);
                     } else {
-                        // if any other data then here
                         logger.info("default " + bodyPart.getContentType());
                     }
                 }
@@ -207,7 +192,6 @@ public class ApiCaller {
         if (headerMap != null && headerMap.size() > 0) {
             this.fillHeaderLoop(headers, headerMap);
         } else {
-            // in case of auth
             headers.setContentType(MediaType.APPLICATION_JSON);
         }
         return headers;

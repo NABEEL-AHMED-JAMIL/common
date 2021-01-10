@@ -43,7 +43,7 @@ public class TimeUtil {
 	}
     
     public static Timestamp addHoursInTimeStamp(Timestamp timestamp, int hours) {
-    	if(timestamp == null){
+    	if (timestamp == null){
     		return null;
     	}
     	Calendar cal = Calendar.getInstance();

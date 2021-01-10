@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class AwsProperties {
 
-    @Value("${aws.endpointUrl}")
-    private String endpointUrl;
     @Value("${aws.region}")
     private String region;
     @Value("${aws.accessKey}")
@@ -34,27 +32,6 @@ public class AwsProperties {
          } else {
             throw new NullPointerException("Invalid Properties");
         }
-    }
-
-    // for bucket
-    public AwsProperties(String endpointUrl, String region, String accessKey, String secretKey) {
-        if((region != null && !region.equals("")) && (bucketName != null && !bucketName.equals("")) &&
-            (accessKey != null && !accessKey.equals("")) && (secretKey != null && !secretKey.equals("")) &&
-            (endpointUrl != null && !endpointUrl.equals(""))) {
-            this.endpointUrl = endpointUrl;
-            this.region = region;
-            this.accessKey = accessKey;
-            this.secretKey = secretKey;
-        } else {
-            throw new NullPointerException("Invalid Properties");
-        }
-    }
-
-    public String getEndpointUrl() {
-        return endpointUrl;
-    }
-    public void setEndpointUrl(String endpointUrl) {
-        this.endpointUrl = endpointUrl;
     }
 
     public String getRegion() {

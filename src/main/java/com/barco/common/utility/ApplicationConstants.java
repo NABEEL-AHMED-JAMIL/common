@@ -33,7 +33,6 @@ public class ApplicationConstants {
     public static final String REQUEST_CANNOT_BE_PROCESSED = "Your request can not be processed.";
     public static final String ACCOUNT_ALREADY_ACTIVATED = "You have already activated your account!";
     public static final String ACCOUNT_SUCCESSFULLY_ACTIVATED = "Congratulation, Your account has been activated!";
-
     public static final String AUTHORITY_ALREADY_EXIST = "Authority already exist";
     public static final String JOB_NAME_ALREADY_EXIST = "Job name already exist";
     public static final String JOB_EXECUTION_TYPE = "Job execution type not be null its should bye auto|manual";
