@@ -7,14 +7,12 @@ import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class AsyncSESTask implements Runnable {
 
     public Logger logger = LogManager.getLogger(AsyncSESTask.class);

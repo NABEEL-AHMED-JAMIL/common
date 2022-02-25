@@ -16,9 +16,7 @@ import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +28,6 @@ import java.util.Set;
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     public Logger logger = LogManager.getLogger(AwsBucketManagerImpl.class);
@@ -147,6 +144,15 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     @Override
     public String toString() {
         return new Gson().toJson(this);
+    }
+
+    public static void main(String[] args) {
+        AwsBucketManagerImpl awsBucketManager = new AwsBucketManagerImpl();
+        AwsProperties awsProperties = new AwsProperties("us-east-1", "AKIAZ6NING3INUTIKOWN",
+            "jsu/jsUHQN0ElbRZQqf9ehXaOGXwcSq7MbBagG7i");
+        awsBucketManager.amazonS3(awsProperties);
+        System.out.println(awsBucketManager.getObjectMetadata("Spring-RoadMap.png", "barco-user-bucket"));
+        System.out.println(awsBucketManager.isBucketExist("barco-user-bucket"));
     }
 
 }

@@ -6,16 +6,13 @@ import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 
 /**
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class TemplateFactory {
 
     private Logger logger = LogManager.getLogger(TemplateFactory.class);

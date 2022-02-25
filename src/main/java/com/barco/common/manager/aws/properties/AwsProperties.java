@@ -2,14 +2,12 @@ package com.barco.common.manager.aws.properties;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class AwsProperties {
 
     @Value("${aws.region}")
@@ -22,7 +20,6 @@ public class AwsProperties {
 
     public AwsProperties() {}
 
-    // for email
     public AwsProperties(String region, String accessKey, String secretKey) {
         if((region != null && !region.equals("")) && (accessKey != null && !accessKey.equals("")) &&
             (secretKey != null && !secretKey.equals(""))) {

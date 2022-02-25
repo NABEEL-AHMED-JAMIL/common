@@ -14,7 +14,6 @@ import com.barco.common.manager.aws.properties.AwsProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +22,6 @@ import javax.annotation.PostConstruct;
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class AwsSESManagerImpl implements IAwsSESManager {
 
     public Logger logger = LogManager.getLogger(AwsSESManagerImpl.class);

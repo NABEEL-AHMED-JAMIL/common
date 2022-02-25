@@ -5,19 +5,14 @@ import org.apache.logging.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import java.io.StringWriter;
 import java.util.Map;
-
-import static com.barco.common.utility.view.TemplateType.EMAIL_ACCOUNT_CREATED_TEMPLATE;
-import static com.barco.common.utility.view.TemplateType.FORGOT_PASSWORD_TEMPLATE;
 
 /**
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class VelocityManager {
 
     private Logger logger = LogManager.getLogger(VelocityManager.class);
@@ -40,11 +35,8 @@ public class VelocityManager {
         String responseMessage = null;
         this.setWriter(new StringWriter());
         this.setContext(new VelocityContext());
-        if (templateType.equals(EMAIL_ACCOUNT_CREATED_TEMPLATE)) {
-            logger.info("Request Content :- " + object);
-            this.context.put("request", object);
-            responseMessage = this.getWriterResponse(templateType).toString();
-        } else if (templateType.equals(FORGOT_PASSWORD_TEMPLATE)) {
+        if (templateType.equals(TemplateType.EMAIL_ACCOUNT_CREATED_TEMPLATE) ||
+            templateType.equals(TemplateType.FORGOT_PASSWORD_TEMPLATE)) {
             logger.info("Request Content :- " + object);
             this.context.put("request", object);
             responseMessage = this.getWriterResponse(templateType).toString();

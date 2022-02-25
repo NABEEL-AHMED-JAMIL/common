@@ -7,9 +7,7 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.ftp.FTPSClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import javax.net.ssl.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +26,6 @@ import java.util.Locale;
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class FtpFileExchange {
 
     private Logger logger = LogManager.getLogger(FtpFileExchange.class);
@@ -87,13 +84,14 @@ public class FtpFileExchange {
     public Boolean connectionOpen() throws IOException, NoSuchAlgorithmException, KeyManagementException {
         Boolean isLogin = false;
         if (this.port > 100) {
-
             Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() { return null; }
-                    public void checkServerTrusted(X509Certificate[] certs, String authType) throws CertificateException { return; }
-                    public void checkClientTrusted(X509Certificate[] certs, String authType) throws CertificateException { return; }
+                    public void checkServerTrusted(X509Certificate[] certs, String authType)
+                           throws CertificateException { return; }
+                    public void checkClientTrusted(X509Certificate[] certs, String authType)
+                           throws CertificateException { return; }
                 }
             };
             SSLContext sc = SSLContext.getInstance("SSL");

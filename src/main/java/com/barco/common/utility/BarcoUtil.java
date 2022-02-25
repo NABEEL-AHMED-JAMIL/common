@@ -1,12 +1,11 @@
 package com.barco.common.utility;
 
 import com.google.gson.JsonObject;
-import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import static org.apache.logging.log4j.util.Strings.isNotBlank;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,8 +18,6 @@ import java.util.regex.Pattern;
 public class BarcoUtil {
 
     public Logger logger = LogManager.getLogger(BarcoUtil.class);
-
-    public static String icon = "https://s3.amazonaws.com/www.webacq-sample.com/QA-File/image.png";
 
     public static boolean isValidEmail(String emailStr) {
         Matcher matcher = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
@@ -36,39 +33,39 @@ public class BarcoUtil {
         return ((jsonObj.has(key) && jsonObj.get(key) != null && !jsonObj.get(key).isJsonNull()) &&
             ((jsonObj.get(key).isJsonObject() && !jsonObj.getAsJsonObject(key).entrySet().isEmpty()) ||
             (jsonObj.get(key).isJsonArray() && 0 < jsonObj.getAsJsonArray(key).size()) ||
-            (jsonObj.get(key).isJsonPrimitive() && StringUtils.isNotBlank(jsonObj.get(key).getAsString()))));
+            (jsonObj.get(key).isJsonPrimitive() && isNotBlank(jsonObj.get(key).getAsString()))));
     }
 
-    public static boolean isNull(Object str) {
-        if (str == null) {
+    public static boolean isNull(Object object) {
+        if (object == null) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNull(Long str) {
-        if (str == null) {
+    public static boolean isNull(Long log) {
+        if (log == null) {
             return true;
         }
         return false;
     }
 
     public static boolean isNull(String str) {
-        if (str == null) {
+        if (str == null || str.trim().isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNull(Boolean str) {
-        if (str == null) {
+    public static boolean isNull(Boolean bool) {
+        if (bool == null) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNull(Double str) {
-        if (str == null) {
+    public static boolean isNull(Double dou) {
+        if (dou == null) {
             return true;
         }
         return false;
