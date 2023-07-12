@@ -26,6 +26,7 @@ public class AsyncTaskProperties {
     public Integer getMinThreads() {
         return minThreads;
     }
+
     public void setMinThreads(Integer minThreads) {
         this.minThreads = minThreads;
     }
@@ -33,6 +34,7 @@ public class AsyncTaskProperties {
     public Integer getMaxThreads() {
         return maxThreads;
     }
+
     public void setMaxThreads(Integer maxThreads) {
         this.maxThreads = maxThreads;
     }
@@ -40,6 +42,7 @@ public class AsyncTaskProperties {
     public Integer getIdleThreadLife() {
         return idleThreadLife;
     }
+
     public void setIdleThreadLife(Integer idleThreadLife) {
         this.idleThreadLife = idleThreadLife;
     }

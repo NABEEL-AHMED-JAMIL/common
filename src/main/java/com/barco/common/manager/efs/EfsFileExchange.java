@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.springframework.beans.factory.annotation.Value;
 import java.io.*;
 
 /**
@@ -17,7 +16,6 @@ public class EfsFileExchange {
 
     private Logger logger = LogManager.getLogger(EfsFileExchange.class);
 
-    @Value("${storage.efsFileDire}")
     private String basePathTempDire;
 
     public EfsFileExchange() {}
@@ -39,7 +37,8 @@ public class EfsFileExchange {
         return false;
     }
 
-    public void saveFile(ByteArrayOutputStream byteArrayOutputStream, String targetFileName) throws Exception {
+    public void saveFile(ByteArrayOutputStream byteArrayOutputStream,
+        String targetFileName) throws Exception {
         if (byteArrayOutputStream != null && byteArrayOutputStream.size() > 0) {
             try (OutputStream outputStream = new FileOutputStream(
                 this.basePathTempDire.concat(targetFileName))) {
@@ -85,6 +84,7 @@ public class EfsFileExchange {
     public String getBasePathTempDire() {
         return basePathTempDire;
     }
+
     public void setBasePathTempDire(String basePathTempDire) {
         this.basePathTempDire = basePathTempDire;
     }

@@ -29,7 +29,7 @@ public class AsyncSESTask implements Runnable {
     // give free hand to the request and email give to the separate thread
     @Override
     public void run() {
-        // false then send attache email
+        // false then send attached email
         if (this.getSimple()) {
             logger.debug("===>>>>>>Send-Simple-Email<<<<<<=======");
             this.awsSESManager.sendSESEmail(this.getSendEmailRequest());
@@ -42,6 +42,7 @@ public class AsyncSESTask implements Runnable {
     public Boolean getSimple() {
         return isSimple;
     }
+
     public void setSimple(Boolean simple) {
         isSimple = simple;
     }
@@ -49,6 +50,7 @@ public class AsyncSESTask implements Runnable {
     public SendEmailRequest getSendEmailRequest() {
         return sendEmailRequest;
     }
+
     public void setSendEmailRequest(SendEmailRequest sendEmailRequest) {
         this.sendEmailRequest = sendEmailRequest;
     }
@@ -56,6 +58,7 @@ public class AsyncSESTask implements Runnable {
     public SendRawEmailRequest getSendRawEmailRequest() {
         return sendRawEmailRequest;
     }
+
     public void setSendRawEmailRequest(SendRawEmailRequest sendRawEmailRequest) {
         this.sendRawEmailRequest = sendRawEmailRequest;
     }

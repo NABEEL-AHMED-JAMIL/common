@@ -19,6 +19,7 @@ public class AwsBucketObjectDetail {
     public String getBucketName() {
         return bucketName;
     }
+
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
     }
@@ -26,6 +27,7 @@ public class AwsBucketObjectDetail {
     public String getObjKey() {
         return objKey;
     }
+
     public void setObjKey(String objKey) {
         this.objKey = objKey;
     }
