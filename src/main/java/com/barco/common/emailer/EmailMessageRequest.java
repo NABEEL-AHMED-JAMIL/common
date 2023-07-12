@@ -1,29 +1,28 @@
 package com.barco.common.emailer;
 
-import com.barco.common.utility.view.TemplateType;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * @author Nabeel Ahmed
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EmailMessageDTO implements Serializable {
+public class EmailMessageRequest implements Serializable {
 
     private String fromEmail;
     private String recipients;
     private List<String> recipientsMulti = new ArrayList<>();
     private String subject;
+    private String bodyPayload;
     private Map<String, Object> bodyMap;
-    private TemplateType emailTemplateName;
 
-    public EmailMessageDTO() {}
+    public EmailMessageRequest() {}
 
     public String getFromEmail() {
         return fromEmail;
@@ -53,18 +52,19 @@ public class EmailMessageDTO implements Serializable {
         this.subject = subject;
     }
 
+    public String getBodyPayload() {
+        return bodyPayload;
+    }
+
+    public void setBodyPayload(String bodyPayload) {
+        this.bodyPayload = bodyPayload;
+    }
+
     public Map<String, Object> getBodyMap() {
         return bodyMap;
     }
     public void setBodyMap(Map<String, Object> bodyMap) {
         this.bodyMap = bodyMap;
-    }
-
-    public TemplateType getEmailTemplateName() {
-        return emailTemplateName;
-    }
-    public void setEmailTemplateName(TemplateType emailTemplateName) {
-        this.emailTemplateName = emailTemplateName;
     }
 
     @Override

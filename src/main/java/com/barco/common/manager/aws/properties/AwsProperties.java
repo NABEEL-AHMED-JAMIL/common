@@ -1,7 +1,6 @@
 package com.barco.common.manager.aws.properties;
 
 import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,18 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class AwsProperties {
 
-    @Value("${aws.region}")
     private String region;
-    @Value("${aws.accessKey}")
     private String accessKey;
-    @Value("${aws.secretKey}")
     private String secretKey;
     private String bucketName;
 
     public AwsProperties() {}
 
     public AwsProperties(String region, String accessKey, String secretKey) {
-        if((region != null && !region.equals("")) && (accessKey != null && !accessKey.equals("")) &&
+        if((region != null && !region.equals("")) &&
+            (accessKey != null && !accessKey.equals("")) &&
             (secretKey != null && !secretKey.equals(""))) {
             this.region = region;
             this.accessKey = accessKey;

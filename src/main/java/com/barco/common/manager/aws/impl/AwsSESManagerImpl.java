@@ -16,8 +16,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 /**
  * @author Nabeel Ahmed
  */
@@ -33,17 +31,6 @@ public class AwsSESManagerImpl implements IAwsSESManager {
     private AmazonSimpleEmailService amazonSES;
 
     public AwsSESManagerImpl() {}
-
-    @Override
-    @PostConstruct
-    public void initializeAmazonS3Client() throws AmazonClientException {
-        this.credentials = new BasicAWSCredentials(this.awsProperties.getAccessKey(), this.awsProperties.getSecretKey());
-        logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-START====================+");
-        this.amazonSES = AmazonSimpleEmailServiceClientBuilder.standard()
-            .withCredentials(new AWSStaticCredentialsProvider(this.credentials))
-            .withRegion(Regions.fromName(this.awsProperties.getRegion())).build();
-        logger.info("+================AWS-SIMPLE-EMAIL-SERVICE-END====================+");
-    }
 
     public AwsProperties getAwsProperties() {
         return awsProperties;

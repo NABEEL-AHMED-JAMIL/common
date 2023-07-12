@@ -17,6 +17,7 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.security.Provider;
 import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -81,24 +82,23 @@ public class FtpFileExchange {
         return this;
     }
 
-    public Boolean connectionOpen() throws IOException, NoSuchAlgorithmException, KeyManagementException {
+    public Boolean connectionOpen() throws IOException, NoSuchAlgorithmException,
+        KeyManagementException {
         Boolean isLogin = false;
         if (this.port > 100) {
-            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             TrustManager[] trustAllCerts = new TrustManager[] {
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() { return null; }
                     public void checkServerTrusted(X509Certificate[] certs, String authType)
-                           throws CertificateException { return; }
+                       throws CertificateException { return; }
                     public void checkClientTrusted(X509Certificate[] certs, String authType)
-                           throws CertificateException { return; }
+                       throws CertificateException { return; }
                 }
             };
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, trustAllCerts, null);
             this.ftpsClient  = new ModifiedFTPSClient(true, sc);
         } else {
-            // fro ftp
             this.ftpsClient = new ModifiedFTPSClient();
         }
         this.ftpsClient.setControlKeepAliveTimeout(TENSECONDS);
