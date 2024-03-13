@@ -1,6 +1,7 @@
 package com.barco.common.utility;
 
 import com.barco.common.request.ConfigurationMakerRequest;
+import com.barco.common.request.TagInfo;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,7 @@ public class XmlOutTagInfoUtil {
         if (xmlMakerRequest.getXmlTagsInfo() != null) {
             Document xmlDoc = this.getBuilder().newDocument();
             boolean isParent = true;
-            for (ConfigurationMakerRequest.TagInfo tagInfo:
+            for (TagInfo tagInfo:
                 xmlMakerRequest.getXmlTagsInfo()) {
                 String tagKey = tagInfo.getTagKey();
                 String tagParent = tagInfo.getTagParent();

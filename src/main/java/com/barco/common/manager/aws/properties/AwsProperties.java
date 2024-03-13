@@ -1,12 +1,10 @@
 package com.barco.common.manager.aws.properties;
 
 import com.google.gson.Gson;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Nabeel Ahmed
  */
-@Component
 public class AwsProperties {
 
     private String region;

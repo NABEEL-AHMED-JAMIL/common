@@ -15,8 +15,6 @@ import com.barco.common.manager.aws.properties.AwsProperties;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
@@ -26,16 +24,11 @@ import java.util.Set;
 /**
  * @author Nabeel Ahmed
  */
-@Component
 public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     public Logger logger = LogManager.getLogger(AwsBucketManagerImpl.class);
 
-    @Autowired
-    private AwsProperties awsProperties;
-
     private AmazonS3 amazonS3;
-    private AWSCredentials credentials;
 
     public AwsBucketManagerImpl() {}
 

@@ -3,7 +3,6 @@ package com.barco.common.manager.efs;
 import com.barco.common.utility.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import java.io.*;
@@ -11,7 +10,6 @@ import java.io.*;
 /**
  * @author Nabeel Ahmed
  */
-@Component
 public class EfsFileExchange {
 
     private Logger logger = LogManager.getLogger(EfsFileExchange.class);
@@ -19,6 +17,10 @@ public class EfsFileExchange {
     private String basePathTempDire;
 
     public EfsFileExchange() {}
+
+    public EfsFileExchange(String basePathTempDire) {
+        this.basePathTempDire = basePathTempDire;
+    }
 
     public Boolean makeDir(String basePath) {
         try {

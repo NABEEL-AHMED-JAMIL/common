@@ -3,17 +3,15 @@ package com.barco.common.manager.db;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Nabeel Ahmed
+ * HIBERNAT WE WILL USE
  */
-@Component
 public class DatabaseExchange {
 
     private Logger logger = LogManager.getLogger(DatabaseExchange.class);
 
-    // mysql,pg,sql server
     private String dataBaseType;
     private String driver; // driver for db base on mysql
     private String databaseServer; // ip or else db path
