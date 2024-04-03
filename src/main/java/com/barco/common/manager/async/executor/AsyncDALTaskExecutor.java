@@ -14,7 +14,7 @@ public class AsyncDALTaskExecutor {
 
     public static Logger logger = LogManager.getLogger(AsyncDALTaskExecutor.class);
 
-    private static LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(1000);
+    private static LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(50);
     private static ThreadPoolExecutor threadPool;
 
     public static void addTask(Runnable task) {

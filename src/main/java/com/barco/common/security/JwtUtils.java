@@ -27,6 +27,17 @@ public class JwtUtils {
             .signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
     }
 
+    /**
+     * Reset password link expire in 10 mint
+     * @param payload
+     * @return String
+     * */
+    public String generateTokenFromUsernameResetPassword(String payload) {
+        return Jwts.builder().setSubject(payload).setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + 600000))
+            .signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
+    }
+
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }

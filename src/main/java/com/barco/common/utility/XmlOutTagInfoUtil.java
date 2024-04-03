@@ -127,15 +127,11 @@ public class XmlOutTagInfoUtil {
     }
 
     private void addTagValue(Document xmlDoc, Element child, String tagValue) {
-        if (!isNull(tagValue)) {
+        if (!BarcoUtil.isNull(tagValue)) {
             child.appendChild(xmlDoc.createTextNode(tagValue));
         } else {
             child.appendChild(xmlDoc.createTextNode(SPACE));
         }
-    }
-
-    private boolean isNull(Object payload) {
-        return payload == null || payload == "" ? true : false;
     }
 
     @Override

@@ -42,12 +42,12 @@ public class BulkExcel implements ExcelUtil {
      * @param rowCount
      * @param HEADER_FILED_BATCH_FILE
      * */
-    public void fillBulkHeader(Integer rowCount, String[] HEADER_FILED_BATCH_FILE) {
+    public void fillBulkHeader(Integer rowCount, List<String> HEADER_FILED_BATCH_FILE) {
         Row header = this.sheet.createRow(rowCount);
         CellStyle style = this.cellHeadingBackgroundColorStyle(IndexedColors.GREY_25_PERCENT.getIndex());
         int start = 0; int index = 0;
-        for (int i=start; i<HEADER_FILED_BATCH_FILE.length; i++) {
-            fillHeading(index, header, style, HEADER_FILED_BATCH_FILE[i]);
+        for (int i=start; i<HEADER_FILED_BATCH_FILE.size(); i++) {
+            fillHeading(index, header, style, HEADER_FILED_BATCH_FILE.get(i).toUpperCase());
             index = index+1;
         }
     }

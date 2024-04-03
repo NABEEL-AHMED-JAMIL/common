@@ -1,17 +1,18 @@
 package com.barco.common.utility.validation;
 
+import com.barco.common.utility.BarcoUtil;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
 
 /**
- * This SourceTaskValidation validate the information of the sheet
+ * This LookupDataValidation validate the information of the sheet
  * if the date not valid its stop the process and through the valid msg
  * @author Nabeel Ahmed
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LookupValidation {
+public class LookupDataValidation {
 
     // validation filed
     private final String REGEX = "^[-a-zA-Z0-9@\\.+_]+$";
@@ -21,11 +22,12 @@ public class LookupValidation {
     private String lookupCode;
     private String lookupType;
     private String lookupValue;
+    private String uiLookup;
     private String description;
     //
     private Long parentLookupId;
 
-    public LookupValidation() {
+    public LookupDataValidation() {
     }
 
     public Integer getRowCounter() {
@@ -41,7 +43,7 @@ public class LookupValidation {
     }
 
     public void setErrorMsg(String errorMsg) {
-        if (isNull(this.errorMsg)) {
+        if (BarcoUtil.isNull(this.errorMsg)) {
             this.errorMsg = errorMsg;
         } else {
             this.errorMsg += errorMsg;
@@ -72,6 +74,14 @@ public class LookupValidation {
         this.lookupValue = lookupValue;
     }
 
+    public String getUiLookup() {
+        return uiLookup;
+    }
+
+    public void setUiLookup(String uiLookup) {
+        this.uiLookup = uiLookup;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -95,30 +105,26 @@ public class LookupValidation {
      * @return boolean true|false
      * */
     public void isValidLookup() {
-        if (!this.isNull(this.parentLookupId) && this.isNull(this.lookupCode)) {
+        if (!BarcoUtil.isNull(this.parentLookupId) && BarcoUtil.isNull(this.lookupCode)) {
             this.setErrorMsg(String.format("LookupCode should not be empty at row %s.<br>", rowCounter));
         }
-        if (this.isNull(this.lookupType)) {
+        if (BarcoUtil.isNull(this.lookupType)) {
             this.setErrorMsg(String.format("LookupType should not be empty at row %s.<br>", rowCounter));
         } else if (!this.lookupType.matches(this.REGEX)) {
             this.setErrorMsg(String.format("LookupType should not be non space latter at row %s.<br>", rowCounter));
         }
-        if (this.isNull(this.lookupValue)) {
+        if (BarcoUtil.isNull(this.lookupValue)) {
             this.setErrorMsg(String.format("LookupValue should not be empty at row %s.<br>", rowCounter));
         }
-        if (this.isNull(this.description)) {
+        if (BarcoUtil.isNull(this.uiLookup)) {
+            this.setErrorMsg(String.format("UILookup should not be empty at row %s.<br>", rowCounter));
+        } else if (!BarcoUtil.isNull(this.uiLookup) && (!this.uiLookup.equals("TRUE") && !this.uiLookup.equals("FALSE"))) {
+            this.setErrorMsg(String.format("UILookup should not be empty and should be (TRUE|FALSE) at row %s.<br>", rowCounter));
+        }
+        if (BarcoUtil.isNull(this.description)) {
             this.setErrorMsg(String.format("Description should not be empty at row %s.<br>", rowCounter));
         }
     }
-
-    private static boolean isNull(String filed) {
-        return (filed == null || filed.length() == 0) ? true : false;
-    }
-
-    private static boolean isNull(Object filed) {
-        return (filed == null) ? true : false;
-    }
-
 
     @Override
     public String toString() {

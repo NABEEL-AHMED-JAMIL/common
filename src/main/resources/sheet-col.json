@@ -1,0 +1,47 @@
+{
+  "LOOKUP": {
+    "sheetName": "Lookups",
+    "colTitle": [
+      "LOOKUP_TYPE",
+      "LOOKUP_CODE",
+      "LOOKUP_VALUE",
+      "UI_LOOKUP",
+      "DESCRIPTION"
+    ]
+  },
+  "PROFILE": {
+    "sheetName": "Profile",
+    "colTitle": [
+      "NAME",
+      "DESCRIPTION"
+    ]
+  },
+  "PERMISSION": {
+    "sheetName": "Permission",
+    "colTitle": [
+      "NAME",
+      "DESCRIPTION"
+    ]
+  },
+  "ROLE": {
+    "sheetName": "Role",
+    "colTitle": [
+      "NAME",
+      "DESCRIPTION"
+    ]
+  },
+  "EVARIABLE": {
+    "sheetName": "EVariable",
+    "colTitle": [
+      "NAME",
+      "DESCRIPTION"
+    ]
+  },
+  "GROUP": {
+    "sheetName": "Group",
+    "colTitle": [
+      "NAME",
+      "DESCRIPTION"
+    ]
+  }
+}

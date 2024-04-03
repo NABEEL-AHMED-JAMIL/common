@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.TimeZone;
@@ -25,6 +24,7 @@ public class BarcoUtil {
     public static String SIMPLE_DATE_PATTERN = "yyyy-MM-dd";
     public static String CONTENT_DISPOSITION ="Content-Disposition";
     public static String FILE_NAME_HEADER = "attachment; filename=";
+    public static String SELECT = "select";
     public static String ERROR = "ERROR";
     public static String SUCCESS = "SUCCESS";
     public static String JOB_ADD = "Job-Add";
