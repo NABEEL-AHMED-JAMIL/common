@@ -14,6 +14,8 @@ public class EmailUtil {
     public static String USER_REGISTERED = "ETL User Registered";
     public static String FORGOT_PASSWORD = "ETL Forgot Password";
     public static String PASSWORD_UPDATED = "ETL Password Updated";
+    public static String YOUR_ACCOUNT_IS_NOW_ACTIVE = "ETL Your Account is Now Active";
+    public static String YOUR_ACCOUNT_HAS_BEEN_BLOCKED = "ETL Your Account Has Been Blocked";
 
     // filed
     public static String USERNAME = "username";
