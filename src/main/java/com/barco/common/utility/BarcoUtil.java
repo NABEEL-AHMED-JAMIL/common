@@ -21,6 +21,8 @@ public class BarcoUtil {
 
     public static Logger logger = LogManager.getLogger(BarcoUtil.class);
 
+    public static String START_DATE = " 00:00:00";
+    public static String END_DATE = " 23:59:59";
     public static String SIMPLE_DATE_PATTERN = "yyyy-MM-dd";
     public static String CONTENT_DISPOSITION ="Content-Disposition";
     public static String FILE_NAME_HEADER = "attachment; filename=";
