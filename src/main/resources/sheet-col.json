@@ -43,5 +43,38 @@
       "NAME",
       "DESCRIPTION"
     ]
+  },
+  "STT_FORM": {
+    "sheetName": "Stt Form",
+    "colTitle": [
+      "FORM_NAME",
+      "FORM_TYPE",
+      "HOME_PAGE",
+      "SERVICE_ID",
+      "DESCRIPTION"
+    ]
+  },
+  "STT_SECTION": {
+    "sheetName": "Stt Section",
+    "colTitle": [
+      "SECTION_NAME",
+      "DESCRIPTION"
+    ]
+  },
+  "STT_CONTROL": {
+    "sheetName": "Stt Control",
+    "colTitle": [
+      "CONTROL_NAME",
+      "DESCRIPTION",
+      "FIELD_NAME",
+      "FIELD_TITLE",
+      "FIELD_WIDTH",
+      "PLACEHOLDER",
+      "PATTERN",
+      "FIELD_TYPE",
+      "MIN_LENGTH",
+      "MAX_LENGTH",
+      "REQUIRED"
+    ]
   }
 }

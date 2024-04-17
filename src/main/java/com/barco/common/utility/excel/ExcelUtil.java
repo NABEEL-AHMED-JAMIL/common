@@ -20,6 +20,10 @@ public interface ExcelUtil {
     public static String GROUP = "GROUP";
     public static String BATCH = "Batch.xlsx";
     public static String SHEET_COL = "sheet-col.json";
+    public static String STT = "STT";
+    public static String STT_FORM = "STT_FORM";
+    public static String STT_SECTION = "STT_SECTION";
+    public static String STT_CONTROL = "STT_CONTROL";
 
 }
 
