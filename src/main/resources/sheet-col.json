@@ -37,13 +37,6 @@
       "DESCRIPTION"
     ]
   },
-  "GROUP": {
-    "sheetName": "Group",
-    "colTitle": [
-      "NAME",
-      "DESCRIPTION"
-    ]
-  },
   "STT_FORM": {
     "sheetName": "Stt Form",
     "colTitle": [
