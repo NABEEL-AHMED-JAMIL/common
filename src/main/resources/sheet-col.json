@@ -69,5 +69,17 @@
       "MAX_LENGTH",
       "REQUIRED"
     ]
+  },
+  "APP_USER": {
+    "sheetName": "App User",
+    "colTitle": [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "EMAIL",
+      "USERNAME",
+      "IP_ADDRESS",
+      "PROFILE",
+      "ROLE"
+    ]
   }
 }

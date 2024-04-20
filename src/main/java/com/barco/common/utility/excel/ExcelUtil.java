@@ -17,6 +17,7 @@ public interface ExcelUtil {
     public static String PERMISSION = "PERMISSION";
     public static String ROLE = "ROLE";
     public static String EVARIABLE = "EVARIABLE";
+    public static String APP_USER = "APP_USER";
     public static String BATCH = "Batch.xlsx";
     public static String SHEET_COL = "sheet-col.json";
     public static String STT = "STT";

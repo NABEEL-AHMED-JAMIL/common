@@ -10,6 +10,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import javax.mail.internet.MimeMessage;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * @author Nabeel Ahmed
@@ -24,11 +27,35 @@ public class EmailMessagesFactory {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    private ExecutorService executorService;
+
+    public EmailMessagesFactory() {
+        this.executorService = Executors.newCachedThreadPool();
+    }
+
     /**
-     * sendSimpleMail method use to send email.
+     * Method use to send the simple email
      * @param emailContent
      * */
-    public String sendSimpleMail(EmailMessageRequest emailContent) {
+    public String sendSimpleMailAsync(EmailMessageRequest emailContent) {
+        try {
+            Future<?> future = executorService.submit(() -> {
+                sendSimpleMail(emailContent);
+            });
+            // Return immediately after submitting the task
+            return "Mail sending task submitted successfully...";
+        } catch (Exception ex) {
+            // Handle any exceptions occurred while submitting the task
+            ex.printStackTrace();
+            return "Error while submitting mail sending task";
+        }
+    }
+
+    /**
+     * Method use to send the simple email
+     * @param emailContent
+     * */
+    private void sendSimpleMail(EmailMessageRequest emailContent) {
         try {
             MimeMessage mailMessage = this.javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mailMessage, UTF8);
@@ -43,15 +70,14 @@ public class EmailMessagesFactory {
                 }
                 helper.setSubject(emailContent.getSubject());
                 helper.setText(this.getResponseMessage(
-                    emailContent.getBodyPayload(), emailContent.getBodyMap()), true);
+                        emailContent.getBodyPayload(), emailContent.getBodyMap()), true);
                 this.javaMailSender.send(mailMessage);
                 logger.info(String.format("Email Send Successfully Content %s.", emailContent.getBodyMap().toString()));
-                return "Mail sent successfully...";
+            } else {
+                throw new Exception("Recipient Not Found");
             }
-            throw new Exception("Recipient Not Found");
         } catch (Exception ex) {
             logger.error("Exception :- " + ExceptionUtil.getRootCauseMessage(ex));
-            return "Error while sending mail";
         }
     }
 
