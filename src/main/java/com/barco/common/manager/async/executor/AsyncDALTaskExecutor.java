@@ -17,6 +17,10 @@ public class AsyncDALTaskExecutor {
     private static LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(50);
     private static ThreadPoolExecutor threadPool;
 
+    /**
+     * Method use to add task
+     * @param task
+     * */
     public static void addTask(Runnable task) {
         try {
             logger.debug("Submitting Task of type : " + task.getClass().getCanonicalName());
@@ -26,6 +30,12 @@ public class AsyncDALTaskExecutor {
         }
     }
 
+    /**
+     * Method use to create async dal task
+     * @param minThreads,
+     * @param maxThreads
+     * @param threadLifeInMins
+     * */
     public AsyncDALTaskExecutor(Integer minThreads, Integer maxThreads, Integer threadLifeInMins) {
         logger.info(">============AsyncDALTaskExecutor Start Successful============<");
         threadPool = new ThreadPoolExecutor(minThreads, maxThreads, threadLifeInMins, TimeUnit.MINUTES, queue);

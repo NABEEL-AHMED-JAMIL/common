@@ -10,7 +10,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import javax.annotation.PostConstruct;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -35,25 +34,20 @@ public class XmlOutTagInfoUtil {
     final String NAME = "{http://xml.apache.org/xslt}indent-amount";
     final String VALUE = "2";
 
-    private TransformerFactory transformerFactory;
-    private DocumentBuilderFactory factory;
-    private DocumentBuilder builder;
-
-    @PostConstruct
-    public void init() throws Exception {
-        logger.info("============Xml Factory InIt============");
-        this.factory = DocumentBuilderFactory.newInstance();
-        this.factory.setNamespaceAware(true);
-        this.builder = this.factory.newDocumentBuilder();
-        this.transformerFactory = TransformerFactory.newInstance();
-        logger.info("============Xml Factory End============");
-    }
-
+    /**
+     * Method use to make the xml
+     * @param xmlMakerRequest
+     * @return String
+     * */
     public String makeXml(ConfigurationMakerRequest xmlMakerRequest) throws Exception {
         logger.info("Process For Xml Create Start");
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
         String xml = null;
         if (xmlMakerRequest.getXmlTagsInfo() != null) {
-            Document xmlDoc = this.getBuilder().newDocument();
+            Document xmlDoc = builder.newDocument();
             boolean isParent = true;
             for (TagInfo tagInfo:
                 xmlMakerRequest.getXmlTagsInfo()) {
@@ -100,7 +94,7 @@ public class XmlOutTagInfoUtil {
                 }
             }
             // below line use after all root
-            Transformer transformer = this.getTransformerFactory().newTransformer();
+            Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.ENCODING, UTF8);
             transformer.setOutputProperty(OutputKeys.INDENT, YES);
             transformer.setOutputProperty(NAME, VALUE);
@@ -112,18 +106,6 @@ public class XmlOutTagInfoUtil {
         }
         logger.info("Process For Xml Create End");
         return xml;
-    }
-
-    private TransformerFactory getTransformerFactory() {
-        return transformerFactory;
-    }
-
-    private DocumentBuilderFactory getFactory() {
-        return factory;
-    }
-
-    private DocumentBuilder getBuilder() {
-        return builder;
     }
 
     private void addTagValue(Document xmlDoc, Element child, String tagValue) {

@@ -41,6 +41,7 @@ public class FtpFileExchange {
     public String getHost() {
         return host;
     }
+
     public FtpFileExchange setHost(String host) {
         this.host = host;
         return this;
@@ -49,6 +50,7 @@ public class FtpFileExchange {
     public Integer getPort() {
         return port;
     }
+
     public FtpFileExchange setPort(Integer port) {
         this.port = port;
         return this;
@@ -57,6 +59,7 @@ public class FtpFileExchange {
     public String getUser() {
         return user;
     }
+
     public FtpFileExchange setUser(String user) {
         this.user = user;
         return this;
@@ -65,6 +68,7 @@ public class FtpFileExchange {
     public String getPassword() {
         return password;
     }
+
     public FtpFileExchange setPassword(String password) {
         this.password = password;
         return this;
@@ -73,11 +77,16 @@ public class FtpFileExchange {
     public String getDirectoryPath() {
         return directoryPath;
     }
+
     public FtpFileExchange setDirectoryPath(String directoryPath) {
         this.directoryPath = directoryPath;
         return this;
     }
 
+    /**
+     * Method use to open the connection
+     * @return Boolean
+     * */
     public Boolean connectionOpen() throws IOException, NoSuchAlgorithmException,
         KeyManagementException {
         Boolean isLogin = false;
@@ -116,6 +125,12 @@ public class FtpFileExchange {
         return isLogin;
     }
 
+    /**
+     * Method use to upload the file
+     * @param fileName
+     * @param inputStream
+     * @return Boolean
+     * */
     public Boolean uploadFile(String fileName, InputStream inputStream) throws Exception {
         Boolean isUpload = false;
         if (this.directoryPath != null) {
@@ -140,6 +155,11 @@ public class FtpFileExchange {
         return isUpload;
     }
 
+    /**
+     * Method use to check is directory exist
+     * @param directoryPath
+     * @return Boolean
+     * */
     public Boolean isDirectoryExist(String directoryPath) throws IOException {
         Boolean isDirectory = false;
         if (this.ftpsClient.cwd(directoryPath) == 550) {
@@ -156,6 +176,11 @@ public class FtpFileExchange {
         return isDirectory;
     }
 
+    /**
+     * Method use to create the directory
+     * @param directoryPath
+     * @return boolean
+     * */
     public Boolean createDirectory(String directoryPath) throws IOException {
         if (this.isDirectoryExist(directoryPath)) {
             logger.info("Directory Already Exist");
@@ -164,6 +189,10 @@ public class FtpFileExchange {
         return this.ftpsClient.makeDirectory(directoryPath);
     }
 
+    /**
+     * Method use to show the server replay
+     * @param ftpsClient
+     * */
     private void showServerReply(FTPSClient ftpsClient) {
         String[] replies = ftpsClient.getReplyStrings();
         if (replies != null && replies.length > 0) {
@@ -173,7 +202,9 @@ public class FtpFileExchange {
         }
     }
 
-    // connection close for client
+    /**
+     * Method use to close the connection
+     * */
     public void close() throws IOException {
         if (this.ftpsClient.isConnected()) {
             this.ftpsClient.logout();

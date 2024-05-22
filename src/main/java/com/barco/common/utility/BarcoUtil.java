@@ -3,7 +3,6 @@ package com.barco.common.utility;
 import com.google.gson.JsonObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -16,7 +15,6 @@ import java.util.regex.Pattern;
  * @author Nabeel Ahmed
  */
 @Component
-@Scope("prototype")
 public class BarcoUtil {
 
     public static Logger logger = LogManager.getLogger(BarcoUtil.class);
@@ -90,8 +88,6 @@ public class BarcoUtil {
         return request.getRemoteAddr();
     }
 
-
-
     public static Boolean hasKeyValue(JsonObject jsonObj, String key) {
         return ((jsonObj.has(key) && jsonObj.get(key) != null && !jsonObj.get(key).isJsonNull()) &&
             ((jsonObj.get(key).isJsonObject() && !jsonObj.getAsJsonObject(key).entrySet().isEmpty()) ||
@@ -119,24 +115,15 @@ public class BarcoUtil {
     }
 
     public static boolean isNull(String str) {
-        if (str == null || str.trim().isEmpty()) {
-            return true;
-        }
-        return false;
+        return (str == null || str.trim().isEmpty()) ? true : false;
     }
 
     public static boolean isNull(Boolean bool) {
-        if (bool == null) {
-            return true;
-        }
-        return false;
+        return (bool == null) ? true : false;
     }
 
     public static boolean isNull(Double dou) {
-        if (dou == null) {
-            return true;
-        }
-        return false;
+        return (dou == null) ? true : false;
     }
 
     public static boolean isNull(Date dt) {

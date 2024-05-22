@@ -39,9 +39,8 @@ public class EmailMessagesFactory {
      * */
     public String sendSimpleMailAsync(EmailMessageRequest emailContent) {
         try {
-            Future<?> future = executorService.submit(() -> {
-                sendSimpleMail(emailContent);
-            });
+            Future<?> future = this.executorService.submit(() -> sendSimpleMail(emailContent));
+            if (future.isDone()) {}
             // Return immediately after submitting the task
             return "Mail sending task submitted successfully...";
         } catch (Exception ex) {
@@ -81,10 +80,16 @@ public class EmailMessagesFactory {
         }
     }
 
+    /**
+     * Method use to get the response message
+     * @param bodyPayload
+     * @param bodyMap
+     * @return String
+     * */
     public String getResponseMessage(String bodyPayload, Map<String, Object> bodyMap) {
         for (Map.Entry<String, Object> objectEntry: bodyMap.entrySet()) {
-            bodyPayload = bodyPayload.replace(String.format("${%s}", objectEntry.getKey()),
-                String.valueOf(objectEntry.getValue()));
+            bodyPayload = bodyPayload.replace(String.format("${%s}",
+                objectEntry.getKey()), String.valueOf(objectEntry.getValue()));
         }
         return bodyPayload;
     }

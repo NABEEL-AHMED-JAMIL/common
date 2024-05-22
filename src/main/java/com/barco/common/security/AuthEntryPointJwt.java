@@ -18,6 +18,11 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
     private Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 
+    /**
+     * Security Entry Point
+     * @param request
+     * @param response
+     * */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
         AuthenticationException authException) throws IOException, ServletException {

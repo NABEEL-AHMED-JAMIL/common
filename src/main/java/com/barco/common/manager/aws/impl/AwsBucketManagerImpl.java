@@ -12,6 +12,7 @@ import com.amazonaws.services.s3.model.*;
 import com.barco.common.manager.aws.IAwsBucketManager;
 import com.barco.common.manager.aws.dto.AwsBucketObjectDetail;
 import com.barco.common.manager.aws.properties.AwsProperties;
+import com.barco.common.utility.BarcoUtil;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,11 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
 
     public AwsBucketManagerImpl() {}
 
+    /**
+     * Method use to create the bucket
+     * @param bucketName
+     * @return String
+     * */
     @Override
     public String createBucket(String bucketName) throws AmazonClientException {
         String bucketLocation = null;
@@ -43,6 +49,11 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         return bucketLocation;
     }
 
+    /**
+     * Method use to check bucket exist or not
+     * @param bucketName
+     * @return Boolean
+     * */
     @Override
     public Boolean isBucketExist(String bucketName) throws AmazonClientException {
         if (bucketName != null && !bucketName.equals("")) {
@@ -51,6 +62,10 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         throw new NullPointerException("Invalid bucket name");
     }
 
+    /**
+     * Method use to iterate the list of bucket
+     * @return Set<String>
+     * */
     @Override
     public Set<String> listBuckets() throws AmazonClientException {
         Set<String> bucketsDetail = new HashSet<>();
@@ -61,6 +76,11 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         return bucketsDetail;
     }
 
+    /**
+     * Method use to delete the bucket
+     * @param bucketName
+     * @return Boolean
+     * */
     @Override
     public Boolean deleteBucket(String bucketName) throws AmazonClientException {
         if (this.amazonS3.doesBucketExist(bucketName)) {
@@ -70,6 +90,12 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         throw new NotFoundException("Bucket Not Found Exception");
     }
 
+    /**
+     * Method use to check is object exist or not
+     * @param bucketName
+     * @param objectKey
+     * @return Boolean
+     * */
     @Override
     public Boolean isObjKeyExist(String bucketName, String objectKey) throws AmazonClientException {
         if (isBucketExist(bucketName) && (objectKey != null && !objectKey.equals(""))) {
@@ -78,14 +104,19 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         throw new NullPointerException("Invalid objectKey name");
     }
 
+    /**
+     * Method use to upload object to bucket
+     * @param bucketName
+     * @param objKey
+     * @param inputStream
+     * @return AwsBucketObjectDetail
+     * */
     @Override
     public AwsBucketObjectDetail uploadToBucket(String bucketName, String objKey, InputStream inputStream)
-            throws AmazonClientException, IOException {
+        throws AmazonClientException, IOException {
         logger.debug("Uploading a new object to S3 from a file > " + objKey);
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objKey,
-                inputStream, new ObjectMetadata());
-        this.amazonS3.putObject(putObjectRequest);
-        if (inputStream != null) {
+        this.amazonS3.putObject(new PutObjectRequest(bucketName, objKey, inputStream, new ObjectMetadata()));
+        if (!BarcoUtil.isNull(inputStream)) {
             inputStream.close();
         }
         AwsBucketObjectDetail awsBucketObjectDetail = new AwsBucketObjectDetail();
@@ -95,6 +126,12 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         return awsBucketObjectDetail;
     }
 
+    /**
+     * Method use to delete the bucket
+     * @param objKey
+     * @param bucketName
+     * @return Boolean
+     * */
     @Override
     public Boolean deleteBucketObject(String objKey, String bucketName) throws AmazonClientException {
         logger.warn("Deleting an object");
@@ -102,17 +139,32 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         return true;
     }
 
+    /**
+     * Method use to get object meta data
+     * @param objKey
+     * @param bucketName
+     * @return Map<String, Object>
+     * */
     @Override
     public Map<String, Object> getObjectMetadata(String objKey, String bucketName) throws AmazonClientException {
         return this.amazonS3.getObject(new GetObjectRequest(bucketName, objKey))
             .getObjectMetadata().getRawMetadata();
     }
 
+    /**
+     * Method use to add credentials
+     * @param awsProperties
+     * @return AWSCredentials
+     * */
     @Override
     public AWSCredentials credentials(AwsProperties awsProperties) throws AmazonClientException {
         return new BasicAWSCredentials(awsProperties.getAccessKey(), awsProperties.getSecretKey());
     }
 
+    /**
+     * Method use to add amazonS3
+     * @param awsProperties
+     * */
     @Override
     public void amazonS3(AwsProperties awsProperties) throws AmazonClientException {
         logger.debug("+================AWS--START====================+");
