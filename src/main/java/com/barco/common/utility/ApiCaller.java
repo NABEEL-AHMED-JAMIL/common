@@ -25,6 +25,14 @@ public class ApiCaller {
 
     private ResponseEntity<?> response;
 
+    /**
+     * Method use to call the third party api
+     * @param responseType
+     * @param body
+     * @param httpMethod
+     * @param url
+     * @param headerMap
+     * */
     public ResponseEntity<?> apiCaller(Class<?> responseType, Object body,
         HttpMethod httpMethod, String url, Map<String, ?> headerMap) throws Exception {
         logger.info(">>>>>>> ApiCaller := apiCaller Start ");
@@ -37,6 +45,11 @@ public class ApiCaller {
         return this.response;
     }
 
+    /**
+     * Method use to fill header
+     * @param headers
+     * @param headerMap
+     */
     private void fillHeader(HttpHeaders headers, Map<String, ?> headerMap) {
         if (!BarcoUtil.isNull(headerMap) && headerMap.size() > 0) {
             Iterator<? extends Entry<String, ?>> it = headerMap.entrySet().iterator();

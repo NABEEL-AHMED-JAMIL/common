@@ -1,5 +1,6 @@
 package com.barco.common.manager.efs;
 
+import com.barco.common.utility.BarcoUtil;
 import com.barco.common.utility.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +23,11 @@ public class EfsFileExchange {
         this.basePathTempDire = basePathTempDire;
     }
 
+    /**
+    * Method use to make directory
+     * @param basePath
+     * @return Boolean
+    * */
     public Boolean makeDir(String basePath) {
         try {
             basePath = this.basePathTempDire.concat(basePath);
@@ -39,26 +45,39 @@ public class EfsFileExchange {
         return false;
     }
 
-    public void saveFile(ByteArrayOutputStream byteArrayOutputStream,
-        String targetFileName) throws Exception {
-        if (byteArrayOutputStream != null && byteArrayOutputStream.size() > 0) {
+    /**
+     * Method use to save file
+     * @param byteStream
+     * @param targetFileName
+     * */
+    public void saveFile(ByteArrayOutputStream byteStream, String targetFileName) throws Exception {
+        if (!BarcoUtil.isNull(byteStream) && byteStream.size() > 0) {
             try (OutputStream outputStream = new FileOutputStream(
                 this.basePathTempDire.concat(targetFileName))) {
-                byteArrayOutputStream.writeTo(outputStream);
+                byteStream.writeTo(outputStream);
             } finally {
-                if (byteArrayOutputStream != null) {
-                    byteArrayOutputStream.flush();
-                    byteArrayOutputStream.close();
+                if (!BarcoUtil.isNull(byteStream)) {
+                    byteStream.flush();
+                    byteStream.close();
                 }
             }
             logger.info("File Convert and Store into local path");
         }
     }
 
+    /***
+     * Method use to get the file
+     * @param targetFileName
+     * @return InputStream
+     * */
     public InputStream getFile(String targetFileName) throws Exception {
         return new FileInputStream(targetFileName);
     }
 
+    /***
+     * Method use delete the directory
+     * @param basePath
+     * */
     public void deleteDir(String basePath) {
         try {
             File file = new File(basePath);
@@ -71,6 +90,10 @@ public class EfsFileExchange {
         }
     }
 
+    /**
+     * Method use to clean directory
+     * @param basePath
+     * */
     public void cleanDir(String basePath) {
         try {
             File file = new File(basePath);
