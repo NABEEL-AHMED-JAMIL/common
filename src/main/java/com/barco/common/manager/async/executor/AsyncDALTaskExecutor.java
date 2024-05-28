@@ -14,7 +14,7 @@ public class AsyncDALTaskExecutor {
 
     public static Logger logger = LogManager.getLogger(AsyncDALTaskExecutor.class);
 
-    private static LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(50);
+    private static LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>(50);
     private static ThreadPoolExecutor threadPool;
 
     /**
@@ -38,7 +38,7 @@ public class AsyncDALTaskExecutor {
      * */
     public AsyncDALTaskExecutor(Integer minThreads, Integer maxThreads, Integer threadLifeInMins) {
         logger.info(">============AsyncDALTaskExecutor Start Successful============<");
-        threadPool = new ThreadPoolExecutor(minThreads, maxThreads, threadLifeInMins, TimeUnit.MINUTES, queue);
+        threadPool = new ThreadPoolExecutor(minThreads, maxThreads, threadLifeInMins, TimeUnit.MINUTES, workQueue);
         threadPool.setRejectedExecutionHandler(new RejectedExecutionHandler() {
             public void rejectedExecution(Runnable task, ThreadPoolExecutor executor) {
                 logger.error("Task Rejected : " + task.getClass().getCanonicalName());
@@ -58,7 +58,7 @@ public class AsyncDALTaskExecutor {
                 logger.info("AsyncDAL Active No Threads: " + threadPool.getActiveCount() +
                     " Core no of Threads: " + threadPool.getCorePoolSize() +
                     " Current no of threads: " + threadPool.getPoolSize() +
-                    " Current Queue Size: " + queue.size() +
+                    " Current Worker Queue Size: " + workQueue.size() +
                     " Max allowed Threads: "+threadPool.getMaximumPoolSize());
                 }
             }, 5 * 60 * 1000, 60000);
