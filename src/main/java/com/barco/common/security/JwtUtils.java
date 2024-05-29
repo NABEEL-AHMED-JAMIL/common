@@ -49,11 +49,10 @@ public class JwtUtils {
      * @return String
      * */
     public static long oneYearInMs = 365 * 24 * 60 * 60 * 1000L;
-    public String generateToken(String username, String privateKey, String tokenId) throws Exception {
-        return Jwts.builder().setSubject(username).setIssuedAt(new Date())
+    public String generateToken(String privateKey, String tokenId) throws Exception {
+        return Jwts.builder().setSubject(tokenId).setIssuedAt(new Date())
             .setExpiration(new Date((new Date()).getTime() + oneYearInMs))
-            .signWith(SignatureAlgorithm.RS256, getPrivateKeyFromString(privateKey))
-            .claim("tokenId", tokenId).compact();
+            .signWith(SignatureAlgorithm.RS256, getPrivateKeyFromString(privateKey)).compact();
     }
 
 
