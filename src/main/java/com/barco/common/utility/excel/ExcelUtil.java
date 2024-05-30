@@ -13,6 +13,7 @@ public interface ExcelUtil {
     public static String XLSX_EXTENSION = ".xlsx";
     public static String SHEET_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     public static String LOOKUP = "LOOKUP";
+    public static String EVENT_BRIDGE = "EVENT_BRIDGE";
     public static String PROFILE = "PROFILE";
     public static String PERMISSION = "PERMISSION";
     public static String ROLE = "ROLE";
