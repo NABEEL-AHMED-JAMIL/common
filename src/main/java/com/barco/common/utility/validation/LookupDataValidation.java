@@ -12,12 +12,10 @@ import com.google.gson.Gson;
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LookupDataValidation {
+public class LookupDataValidation extends UploadValidator {
 
     // validation filed
     private final String REGEX = "^[-a-zA-Z0-9@\\.+_]+$";
-    private Integer rowCounter = 0;
-    private String errorMsg;
     // business filed
     private String lookupCode;
     private String lookupType;
@@ -28,26 +26,6 @@ public class LookupDataValidation {
     private Long parentLookupId;
 
     public LookupDataValidation() {
-    }
-
-    public Integer getRowCounter() {
-        return rowCounter;
-    }
-
-    public void setRowCounter(Integer rowCounter) {
-        this.rowCounter = rowCounter;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        if (BarcoUtil.isNull(this.errorMsg)) {
-            this.errorMsg = errorMsg;
-        } else {
-            this.errorMsg += errorMsg;
-        }
     }
 
     public String getLookupType() {
@@ -104,25 +82,25 @@ public class LookupDataValidation {
      * if non-valid return false
      * @return boolean true|false
      * */
-    public void isValidLookup() {
+    public void isValidBatch() {
         if (!BarcoUtil.isNull(this.parentLookupId) && BarcoUtil.isNull(this.lookupCode)) {
-            this.setErrorMsg(String.format("LookupCode should not be empty at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("LookupCode should not be empty at row %s.<br>", this.getRowCounter()));
         }
         if (BarcoUtil.isNull(this.lookupType)) {
-            this.setErrorMsg(String.format("LookupType should not be empty at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("LookupType should not be empty at row %s.<br>", this.getRowCounter()));
         } else if (!this.lookupType.matches(this.REGEX)) {
-            this.setErrorMsg(String.format("LookupType should not be non space latter at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("LookupType should not be non space latter at row %s.<br>", this.getRowCounter()));
         }
         if (BarcoUtil.isNull(this.lookupValue)) {
-            this.setErrorMsg(String.format("LookupValue should not be empty at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("LookupValue should not be empty at row %s.<br>", this.getRowCounter()));
         }
         if (BarcoUtil.isNull(this.uiLookup)) {
-            this.setErrorMsg(String.format("UILookup should not be empty at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("UILookup should not be empty at row %s.<br>", this.getRowCounter()));
         } else if (!BarcoUtil.isNull(this.uiLookup) && (!this.uiLookup.equals("TRUE") && !this.uiLookup.equals("FALSE"))) {
-            this.setErrorMsg(String.format("UILookup should not be empty and should be (TRUE|FALSE) at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("UILookup should not be empty and should be (TRUE|FALSE) at row %s.<br>", this.getRowCounter()));
         }
         if (BarcoUtil.isNull(this.description)) {
-            this.setErrorMsg(String.format("Description should not be empty at row %s.<br>", rowCounter));
+            this.setErrorMsg(String.format("Description should not be empty at row %s.<br>", this.getRowCounter()));
         }
     }
 

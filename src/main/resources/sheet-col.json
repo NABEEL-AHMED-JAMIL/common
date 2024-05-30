@@ -80,5 +80,14 @@
       "PROFILE",
       "ROLE"
     ]
+  },
+  "EVENT_BRIDGE": {
+    "sheetName": "Event Bridge",
+    "colTitle": [
+      "NAME",
+      "BRIDGE_URL",
+      "DESCRIPTION",
+      "BRIDGE_TYPE"
+    ]
   }
 }
