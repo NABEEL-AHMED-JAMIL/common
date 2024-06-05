@@ -61,15 +61,14 @@ public class EmailMessagesFactory {
             helper.setFrom(emailContent.getFromEmail());
             if (!BarcoUtil.isNull(emailContent.getRecipients())) {
                 helper.setTo(emailContent.getRecipients());
-                if (emailContent.getRecipientsMulti() != null && emailContent.getRecipientsMulti().size() > 0) {
+                if (!BarcoUtil.isNull(emailContent.getRecipientsMulti()) && emailContent.getRecipientsMulti().size() > 0) {
                     // * * * * * * * * *Send cc's* * * * * * * * *
                     String ccSendTo = emailContent.getRecipientsMulti().toString();
                     ccSendTo = ccSendTo.substring(1, ccSendTo.length()-1);
                     helper.setCc(ccSendTo);
                 }
                 helper.setSubject(emailContent.getSubject());
-                helper.setText(this.getResponseMessage(
-                        emailContent.getBodyPayload(), emailContent.getBodyMap()), true);
+                helper.setText(this.getResponseMessage(emailContent.getBodyPayload(), emailContent.getBodyMap()), true);
                 this.javaMailSender.send(mailMessage);
                 logger.info(String.format("Email Send Successfully Content %s.", emailContent.getBodyMap().toString()));
             } else {
