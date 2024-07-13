@@ -86,6 +86,7 @@
     "colTitle": [
       "NAME",
       "BRIDGE_URL",
+      "HTTP_METHOD",
       "DESCRIPTION",
       "BRIDGE_TYPE"
     ]
