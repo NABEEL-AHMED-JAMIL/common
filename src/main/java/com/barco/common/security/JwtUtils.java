@@ -55,7 +55,11 @@ public class JwtUtils {
             .signWith(SignatureAlgorithm.RS256, getPrivateKeyFromString(privateKey)).compact();
     }
 
-
+    /**
+     * Method use to generate the token from username
+     * @param username
+     * @return String
+     * */
     public String generateTokenFromUsername(String username) {
         return Jwts.builder().setSubject(username).setIssuedAt(new Date())
             .setExpiration(new Date((new Date()).getTime() + this.jwtExpirationMs))
