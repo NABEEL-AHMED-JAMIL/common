@@ -19,6 +19,7 @@ public class BarcoUtil {
 
     public static Logger logger = LogManager.getLogger(BarcoUtil.class);
 
+    public static Object NULL = null;
     public static String XRHK = "XRHK-Authorization";
     public static String XSHK = "XSHK-Authorization";
     public static String START_DATE = " 00:00:00";
