@@ -39,14 +39,14 @@ public class EmailMessagesFactory {
      * */
     public String sendSimpleMailAsync(EmailMessageRequest emailContent) {
         try {
-            Future<?> future = this.executorService.submit(() -> sendSimpleMail(emailContent));
-            if (future.isDone()) {}
+            this.executorService.submit(() -> this.sendSimpleMail(emailContent));
             // Return immediately after submitting the task
             return "Mail sending task submitted successfully...";
         } catch (Exception ex) {
             // Handle any exceptions occurred while submitting the task
             ex.printStackTrace();
-            return "Error while submitting mail sending task";
+            // Return immediately after submitting the task
+            return "Mail sending task failed successfully...";
         }
     }
 
