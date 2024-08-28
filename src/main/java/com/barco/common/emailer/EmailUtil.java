@@ -12,6 +12,7 @@ public class EmailUtil {
 
     // title
     public static String USER_REGISTERED = "ETL User Registered";
+    public static String ORG_ACCOUNT_REGISTERED = "ETL Org Account Registered";
     public static String FORGOT_PASSWORD = "ETL Forgot Password";
     public static String PASSWORD_UPDATED = "ETL Password Updated";
     public static String YOUR_ACCOUNT_IS_NOW_ACTIVE = "ETL Your Account is Now Active";
@@ -22,6 +23,8 @@ public class EmailUtil {
     public static String FULL_NAME = "fullName";
     public static String ROLE = "role";
     public static String PROFILE = "profile";
+    public static String ORG_NAME = "orgName";
+    public static String ORG_ADDRESS = "orgAddress";
     public static String FORGOT_PASSWORD_URL = "forgotPasswordPageUrl";
 
 }
