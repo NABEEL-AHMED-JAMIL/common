@@ -75,6 +75,7 @@ public class EmailMessagesFactory {
                 throw new Exception("Recipient Not Found");
             }
         } catch (Exception ex) {
+            logger.error(String.format("Email Send Failed Content %s.", emailContent.getBodyMap().toString()));
             logger.error("Exception :- " + ExceptionUtil.getRootCauseMessage(ex));
         }
     }
