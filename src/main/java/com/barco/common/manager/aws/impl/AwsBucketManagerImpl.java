@@ -5,7 +5,6 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.apigateway.model.NotFoundException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
@@ -18,9 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Nabeel Ahmed
@@ -34,22 +31,6 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
     public AwsBucketManagerImpl() {}
 
     /**
-     * Method use to create the bucket
-     * @param bucketName
-     * @return String
-     * */
-    @Override
-    public String createBucket(String bucketName) throws AmazonClientException {
-        String bucketLocation = null;
-        if (this.isBucketExist(bucketName)) {
-            this.amazonS3.createBucket(new CreateBucketRequest(bucketName));
-            bucketLocation = this.amazonS3.getBucketLocation(new GetBucketLocationRequest(bucketName));
-            logger.info("New Bucket location:- " + bucketLocation);
-        }
-        return bucketLocation;
-    }
-
-    /**
      * Method use to check bucket exist or not
      * @param bucketName
      * @return Boolean
@@ -60,34 +41,6 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
             return this.amazonS3.doesBucketExist(bucketName);
         }
         throw new NullPointerException("Invalid bucket name");
-    }
-
-    /**
-     * Method use to iterate the list of bucket
-     * @return Set<String>
-     * */
-    @Override
-    public Set<String> listBuckets() throws AmazonClientException {
-        Set<String> bucketsDetail = new HashSet<>();
-        for (Bucket bucket : this.amazonS3.listBuckets()) {
-            logger.info(" -----> " + bucket.getName());
-            bucketsDetail.add(bucket.getName());
-        }
-        return bucketsDetail;
-    }
-
-    /**
-     * Method use to delete the bucket
-     * @param bucketName
-     * @return Boolean
-     * */
-    @Override
-    public Boolean deleteBucket(String bucketName) throws AmazonClientException {
-        if (this.amazonS3.doesBucketExist(bucketName)) {
-            this.amazonS3.deleteBucket(bucketName);
-            return true;
-        }
-        throw new NotFoundException("Bucket Not Found Exception");
     }
 
     /**
@@ -122,7 +75,7 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
         AwsBucketObjectDetail awsBucketObjectDetail = new AwsBucketObjectDetail();
         awsBucketObjectDetail.setBucketName(bucketName);
         awsBucketObjectDetail.setObjKey(objKey);
-        logger.info("Upload File Detail Aws :- " + awsBucketObjectDetail);
+        logger.info("Upload File Detail Aws :- {}", awsBucketObjectDetail);
         return awsBucketObjectDetail;
     }
 
@@ -147,8 +100,7 @@ public class AwsBucketManagerImpl implements IAwsBucketManager {
      * */
     @Override
     public Map<String, Object> getObjectMetadata(String objKey, String bucketName) throws AmazonClientException {
-        return this.amazonS3.getObject(new GetObjectRequest(bucketName, objKey))
-            .getObjectMetadata().getRawMetadata();
+        return this.amazonS3.getObject(new GetObjectRequest(bucketName, objKey)).getObjectMetadata().getRawMetadata();
     }
 
     /**

@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AsyncTaskProperties {
 
-    @Value("${asyncetaskexecutor.minThreads}")
+    @Value("${task.executor.minThreads}")
     private Integer minThreads;
-    @Value("${asyncetaskexecutor.maxThreads}")
+    @Value("${task.executor.maxThreads}")
     private Integer maxThreads;
-    @Value("${asyncetaskexecutor.idleThreadLife}")
+    @Value("${task.executor.idleThreadLife}")
     private Integer idleThreadLife;
 
     public AsyncTaskProperties() {}

@@ -17,14 +17,25 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     private Logger logger = LoggerFactory.getLogger(WebSocketConfig.class);
 
+    /**
+     * Register Stomp Endpoints
+     * @param registry StompEndpointRegistry
+     */
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();
     }
 
+    /**
+     * Configure Message Broker
+     * @param config MessageBrokerRegistry
+     */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic", "/user");
+        // enable simple broker for broadcast topics and user queues
+        config.enableSimpleBroker("/topic", "/queue");
+        // user destination prefix for convertAndSendToUser(...)
+        config.setUserDestinationPrefix("/user");
     }
 
 }

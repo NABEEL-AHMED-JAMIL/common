@@ -27,10 +27,10 @@
 		</developer>
 	</developers>
 
+	<name>common</name>
 	<groupId>com.barco</groupId>
 	<artifactId>common</artifactId>
-	<version>9.18.2024</version>
-	<name>common</name>
+	<version>9.18.2025</version>
 	<description>Barco Crone Common</description>
 
 	<properties>
@@ -130,12 +130,6 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

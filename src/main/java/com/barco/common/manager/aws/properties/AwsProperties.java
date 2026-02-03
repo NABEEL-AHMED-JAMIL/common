@@ -29,6 +29,7 @@ public class AwsProperties {
     public String getRegion() {
         return region;
     }
+
     public void setRegion(String region) {
         this.region = region;
     }
@@ -36,6 +37,7 @@ public class AwsProperties {
     public String getAccessKey() {
         return accessKey;
     }
+
     public void setAccessKey(String accessKey) {
         this.accessKey = accessKey;
     }
@@ -43,6 +45,7 @@ public class AwsProperties {
     public String getSecretKey() {
         return secretKey;
     }
+
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
@@ -50,6 +53,7 @@ public class AwsProperties {
     public String getBucketName() {
         return bucketName;
     }
+
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
     }

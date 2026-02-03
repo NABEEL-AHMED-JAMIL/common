@@ -26,6 +26,7 @@ public class JwtUtils {
 
     @Value("${app.jwtExpirationMs}")
     private int jwtExpirationMs;
+    public static long oneYearInMs = 365 * 24 * 60 * 60 * 1000L;
 
     // Method to convert Base64-encoded string to PrivateKey
     private static PrivateKey getPrivateKeyFromString(String key) throws Exception {
@@ -44,11 +45,11 @@ public class JwtUtils {
     }
 
     /**
-     * Method use to generate the token from the username detail
-     * @param username
+     * Method use to generate the token from private key
+     * @param privateKey
+     * @param tokenId
      * @return String
      * */
-    public static long oneYearInMs = 365 * 24 * 60 * 60 * 1000L;
     public String generateToken(String privateKey, String tokenId) throws Exception {
         return Jwts.builder().setSubject(tokenId).setIssuedAt(new Date())
             .setExpiration(new Date((new Date()).getTime() + oneYearInMs))

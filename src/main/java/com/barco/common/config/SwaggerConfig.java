@@ -28,6 +28,10 @@ public class SwaggerConfig {
         return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
     }
 
+    /**
+     * Swagger Docket Bean
+     * @return Docket
+     * */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
@@ -35,19 +39,30 @@ public class SwaggerConfig {
             .securitySchemes(List.of(apiKey())).select()
             .apis(RequestHandlerSelectors.any()).paths(PathSelectors.any())
             .build();
-
     }
 
+    /**
+     * Api Info for Swagger
+     * @return ApiInfo
+     * */
     private ApiInfo apiInfo() {
         return new ApiInfo("Process API", "Basic ETL Api.","1.0","Terms of service",
             new Contact("Nabeel Ahmed", "www.process.com", "nabeel.amd93@gmail.com"),
             "License of API", "API license URL", Collections.emptyList());
     }
 
+    /**
+     * Security Context for Swagger
+     * @return
+     */
     private SecurityContext securityContext(){
         return SecurityContext.builder().securityReferences(defaultAuth()).build();
     }
 
+    /**
+     * Default Auth for Swagger
+     * @return List<SecurityReference>
+     */
     private List<SecurityReference> defaultAuth(){
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];

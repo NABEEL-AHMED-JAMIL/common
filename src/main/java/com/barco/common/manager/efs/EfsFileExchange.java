@@ -33,14 +33,14 @@ public class EfsFileExchange {
             basePath = this.basePathTempDire.concat(basePath);
             File finalDir = new File(basePath);
             if (!finalDir.exists()) {
-                logger.info("Making New Directory at path [ " + basePath + " ]");
+                logger.info("Making New Directory at path [ {} ]", basePath);
                 return finalDir.mkdirs();
             } else {
-                logger.info("Directory Already Exist At Path [ " + basePath + " ]");
+                logger.info("Directory Already Exist At Path [ {} ]", basePath);
                 return true;
             }
         } catch (Exception ex) {
-            logger.error("Exception :- " + ExceptionUtil.getRootCauseMessage(ex));
+            logger.error("Exception :- {}", ExceptionUtil.getRootCauseMessage(ex));
         }
         return false;
     }
@@ -82,11 +82,11 @@ public class EfsFileExchange {
         try {
             File file = new File(basePath);
             if (file.exists()) {
-                logger.info("Deleting Directory At Path [ " + basePath + " ]");
+                logger.info("Deleting Directory At Path [ {} ]", basePath);
                 FileUtils.deleteDirectory(file);
             }
         } catch (Exception ex) {
-            logger.error("Exception :- " + ExceptionUtil.getRootCauseMessage(ex));
+            logger.error("Exception :- {}", ExceptionUtil.getRootCauseMessage(ex));
         }
     }
 
@@ -98,11 +98,11 @@ public class EfsFileExchange {
         try {
             File file = new File(basePath);
             if (file.exists()) {
-                logger.info("Cleaning Directory At Path [ " + basePath + " ]");
+                logger.info("Cleaning Directory At Path [ {} ]", basePath);
                 FileUtils.cleanDirectory(file);
             }
         } catch (Exception ex) {
-            logger.error("Exception :- " + ExceptionUtil.getRootCauseMessage(ex));
+            logger.error("Exception :- {}", ExceptionUtil.getRootCauseMessage(ex));
         }
     }
 
