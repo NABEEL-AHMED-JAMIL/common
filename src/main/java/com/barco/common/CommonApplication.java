@@ -1,11 +1,13 @@
 package com.barco.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.boot.CommandLineRunner;
+import com.barco.common.manager.async.executor.AsyncDALTaskExecutor;
+import com.barco.common.utility.BarcoUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import javax.annotation.PreDestroy;
 
 /**
  * @author Nabeel Ahmed
@@ -13,17 +15,24 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class CommonApplication {
 
-	public Logger logger = LogManager.getLogger(CommonApplication.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CommonApplication.class);
+
+	@Autowired
+	private AsyncDALTaskExecutor asyncDALTaskExecutor;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CommonApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner() {
-		return (args) -> {
-			logger.info("Common Application Started Successfully");
-		};
+	@PreDestroy
+	public void onExit() {
+		LOGGER.info("Common Application is shutting down, cleaning up resources...");
+		if (!BarcoUtil.isNull(asyncDALTaskExecutor)) {
+			LOGGER.info("Shutting down AsyncDALTaskExecutor...");
+			this.asyncDALTaskExecutor.shutdown();
+			LOGGER.info("AsyncDALTaskExecutor shutdown complete.");
+		}
+		LOGGER.info("Common Application shutdown complete.");
 	}
 
 }

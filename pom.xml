@@ -13,7 +13,7 @@
 
 	<licenses>
 		<license>
-			<name>New Barco License</name>
+			<name>New ETL License</name>
 			<url>https://github.com/NABEEL-AHMED-JAMIL</url>
 			<distribution>repo</distribution>
 		</license>
@@ -23,7 +23,7 @@
 		<developer>
 			<name>NABEEL AHMED JAMIL</name>
 			<email>nabeel.amd93@gmail.com</email>
-			<organization>Barco</organization>
+			<organization>ETL</organization>
 			<organizationUrl>https://github.com/NABEEL-AHMED-JAMIL</organizationUrl>
 		</developer>
 	</developers>
@@ -31,12 +31,11 @@
 	<name>common</name>
 	<groupId>com.barco</groupId>
 	<artifactId>common</artifactId>
-	<version>2.4.2026</version>
-	<description>Barco Crone Common</description>
+	<version>3.1.2026</version>
+	<description>ETL Crone Common</description>
 
 	<properties>
 		<java.version>11</java.version>
-		<swagger.version>2.9.2</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -48,30 +47,17 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-bean-validators</artifactId>
-			<version>${swagger.version}</version>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<dependency>
@@ -96,7 +82,7 @@
 		<dependency>
 			<groupId>commons-net</groupId>
 			<artifactId>commons-net</artifactId>
-			<version>3.6</version>
+			<version>3.12.0</version>
 		</dependency>
 
 		<dependency>
@@ -106,14 +92,26 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk</artifactId>
-			<version>1.11.373</version>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>javax.activation</artifactId>
+			<version>1.2.0</version>
 		</dependency>
 
 		<dependency>
@@ -144,7 +142,7 @@
 						<phase>package</phase>
 						<configuration>
 							<!--to be imported on other projects-->
-							<classifier>barco-common-util</classifier>
+							<classifier>etl-common-util</classifier>
 						</configuration>
 					</execution>
 				</executions>
@@ -152,6 +150,18 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<release>${java.version}</release>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
