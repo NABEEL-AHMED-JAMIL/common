@@ -31,8 +31,6 @@ public class JwtFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtFactory.class);
 
-    private final ObjectMapper mapper = new ObjectMapper();
-
     // Inject JwtKeyGenerator to delegate decryption/parsing of private keys
     private final JwtKeyGenerator keyGenerator;
 
@@ -203,7 +201,8 @@ public class JwtFactory {
     }
 
     /**
-     * Overload of verifyToken that accepts raw byte[] public key. This is useful when the caller already has the public key bytes (e.g., from a database) and wants to avoid the overhead of Base64 encoding/decoding.
+     * Overload of verifyToken that accepts raw byte[] public key.
+     * This is useful when the caller already has the public key bytes (e.g., from a database) and wants to avoid the overhead of Base64 encoding/decoding.
      * The publicKeyBytes should be the raw X.509 encoded bytes of the public key.
      * @param token JWT token string
      * @param publicKeyBytes raw X.509 encoded public key bytes
@@ -248,7 +247,8 @@ public class JwtFactory {
     }
 
     /**
-     * Overload of getSubjectWithPublicKey that accepts raw byte[] public key. This is useful when the caller already has the public key bytes (e.g., from a database) and wants to avoid the overhead of Base64 encoding/decoding.
+     * Overload of getSubjectWithPublicKey that accepts raw byte[] public key.
+     * This is useful when the caller already has the public key bytes (e.g., from a database) and wants to avoid the overhead of Base64 encoding/decoding.
      * The publicKeyBytes should be the raw X.509 encoded bytes of the public key.
      * @param token JWT token string
      * @param publicKeyBytes raw X.509 encoded public key bytes
@@ -273,6 +273,7 @@ public class JwtFactory {
             return null;
         }
         try {
+            ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(subject, JwtSubject.class);
         } catch (Exception ex) {
             LOGGER.warn("Failed to parse JWT subject JSON: {}", ex.getMessage());
@@ -298,6 +299,7 @@ public class JwtFactory {
         byte[] headerBytes = Base64.getUrlDecoder().decode(headerB64);
         String json = new String(headerBytes, StandardCharsets.UTF_8);
         try {
+            ObjectMapper mapper = new ObjectMapper();
             @SuppressWarnings("unchecked")
             Map<String, Object> map = mapper.readValue(json, Map.class);
             return !BarcoUtil.isNull(map) ? map : new HashMap<>();

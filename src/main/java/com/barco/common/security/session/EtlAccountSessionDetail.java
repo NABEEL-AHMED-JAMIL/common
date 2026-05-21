@@ -16,7 +16,6 @@ import java.util.Collections;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class EtlAccountSessionDetail implements UserDetails, Serializable  {
 
-    private Long id;
     private String uuid;
     private String firstName;
     private String lastName;
@@ -24,7 +23,9 @@ public class EtlAccountSessionDetail implements UserDetails, Serializable  {
     private String email;
     private String password;
     private String ipAddress;
+    // check is org account
     private Boolean orgAccount = false;
+    // check is system account
     private Boolean isSystem = false;
     private String accountProfile;
     private OrganizationDetail organization;
@@ -35,15 +36,6 @@ public class EtlAccountSessionDetail implements UserDetails, Serializable  {
     private Collection<? extends GrantedAuthority> authorities = Collections.emptyList();
 
     public EtlAccountSessionDetail() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public EtlAccountSessionDetail setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getUuid() {
         return uuid;

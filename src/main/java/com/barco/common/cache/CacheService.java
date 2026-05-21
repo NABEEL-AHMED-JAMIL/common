@@ -9,7 +9,7 @@ public interface CacheService {
     /**
      * Put a value into the cache for the given key. Overwrites any existing value.
      * @param key cache key (not null)
-     * @param value value to store (may be null)
+     * @param value value to store (maybe null)
      */
     void put(String key, Object value);
 

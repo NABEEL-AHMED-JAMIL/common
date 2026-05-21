@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 
 /**
  * Caffeine-backed cache service. Provides simple put/get/evict operations.
- * Default settings: maximumSize = 10000, expireAfterAccess = 60 minutes.
+ * Default settings: maximumSize = 100, expireAfterAccess = 60 minutes.
  * @author Nabeel Ahmed
  */
 @Component("jwtPublicKeyCache")
@@ -23,7 +23,7 @@ public class JwtPublicKeyCache implements CacheService {
     @PostConstruct
     public void init() {
         this.cache = Caffeine.newBuilder().maximumSize(100).build();
-        LOGGER.info("JwtPublicKeyCache initialized with maxSize=10000 and expireAfterAccess=60m");
+        LOGGER.info("JwtPublicKeyCache initialized with maxSize=100 and expireAfterAccess=60m");
     }
 
     /**

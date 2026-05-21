@@ -54,8 +54,7 @@ public class AsyncDALTaskExecutor {
                         int attempts = pTask.getRejectAttempts().incrementAndGet();
                         if (attempts <= MAX_REJECT_ATTEMPTS) {
                             LOGGER.warn("Task Rejected, retrying attempt {}/{} for task id: {}, type: {}", attempts, MAX_REJECT_ATTEMPTS, pTask.getTaskId(),
-                                !BarcoUtil.isNull(pTask.getTask()) ? pTask.getTask().getClass().getCanonicalName() :
-                                     pTask.getClass().getCanonicalName());
+                                !BarcoUtil.isNull(pTask.getTask()) ? pTask.getTask().getClass().getCanonicalName() : pTask.getClass().getCanonicalName());
                             try {
                                 // brief backoff before retry
                                 Thread.sleep(1000L);
@@ -73,8 +72,7 @@ public class AsyncDALTaskExecutor {
                             }
                         } else {
                             LOGGER.error("Max reject attempts ({}) reached for task id: {} type: {}. Dropping task.", MAX_REJECT_ATTEMPTS, pTask.getTaskId(),
-                                !BarcoUtil.isNull(pTask.getTask()) ? pTask.getTask().getClass().getCanonicalName() :
-                                    pTask.getClass().getCanonicalName());
+                                !BarcoUtil.isNull(pTask.getTask()) ? pTask.getTask().getClass().getCanonicalName() : pTask.getClass().getCanonicalName());
                         }
                     } else {
                         LOGGER.error("Task Rejected :- {}.", task.getClass().getCanonicalName());
