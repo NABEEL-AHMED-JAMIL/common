@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!-- log folder from application.properties -->
-    <property name="LOG_FOLDER" value="${logging.file.path:-./logs}"/>
+    <!-- log folder from environment variable DATA_LOGS_PATH with fallback to ./logs -->
+    <property name="LOG_FOLDER" value="${DATA_LOGS_PATH:-./logs}"/>
     <!-- main log file -->
     <property name="HOME_LOG" value="${LOG_FOLDER}/common.log"/>
     <!-- Console Appender -->

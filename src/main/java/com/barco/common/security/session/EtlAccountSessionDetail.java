@@ -29,8 +29,8 @@ public class EtlAccountSessionDetail implements UserDetails, Serializable  {
     private Boolean isSystem = false;
     private String accountProfile;
     private OrganizationDetail organization;
-    // Role privileges/permissions as simple strings (e.g. "ROLE_ADMIN", "PRIV_CREATE").
-    // This can be used to easily set authorities without needing to create GrantedAuthority objects upfront.
+    // Privileges as simple strings (e.g. "PRIV_CREATE").
+    // This is a convenience field to allow setting privileges without needing to create GrantedAuthority objects upfront.
     private Collection<String> privileges = Collections.emptyList();
     // Ensure a safe default to avoid NPEs when security frameworks call getAuthorities()
     private Collection<? extends GrantedAuthority> authorities = Collections.emptyList();
