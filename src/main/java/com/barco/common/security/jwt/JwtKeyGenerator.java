@@ -22,6 +22,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 /**
  * Utility to generate RSA key pairs and produce an AES-encrypted private key blob
  * compatible with JwtFactory.decryptPrivateKeyEncrypted.
+ * @author Nabeel Ahmed
  */
 @Component
 public class JwtKeyGenerator {

@@ -4,6 +4,7 @@ import org.springframework.security.core.AuthenticationException;
 
 /**
  * Thrown when an AppRole exists but is not in ACTIVE status.
+ * @author Nabeel Ahmed
  */
 public class InactiveRoleException extends AuthenticationException {
 
@@ -15,4 +16,3 @@ public class InactiveRoleException extends AuthenticationException {
         super(msg, cause);
     }
 }
-

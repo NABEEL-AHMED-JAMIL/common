@@ -28,6 +28,7 @@ import java.util.List;
 
 /**
  * Global REST exception handler.
+ * @author Nabeel Ahmed
  */
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
